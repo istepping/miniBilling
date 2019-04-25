@@ -6,7 +6,7 @@
     <!--view class='address'>{{address}}</view-->
   </view>
 
-  <swiper class='swiper' current='{{curTab}}' bindchange='swiperTab'>
+  <swiper class='swiper' current='{{curTab}}' bindchange='swiperTab' duration='200' autoplay='{{false}}'>
     <swiper-item>
       <view style='padding-left: 20rpx;padding-right: 20rpx;'>
         <view class='item-price'>
@@ -85,7 +85,6 @@
         </view>
       </view>
     </swiper-item>
-    
     <swiper-item>
       <view style='padding-left: 20rpx;padding-right: 20rpx;'>
         <view class='item-price'>

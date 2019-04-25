@@ -532,11 +532,19 @@ Page({
     }
     console.log(data);
     var that = this;
+    //金额验证
+    if (! /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(data.money)){
+      wx.showToast({
+        title: '金额格式不正确!',
+        icon:'none'
+      })
+      return;
+    }
     server.request("/bill/addBillWithTypes", data, function(res){
       if(res.data.statusCode) {
         wx.showToast({
           title: '保存成功',
-          icon: 'success',
+          icon: 'none',
           duration: 1000,
           mask: true
         })

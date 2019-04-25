@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "统计",
   "navigationBarTextStyle": "white",
-  "enablePullDownRefresh": true,
   "disableScroll": true
 }

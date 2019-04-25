@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "账目修改"
+  "navigationBarTitleText": "账目修改",
+  "disableScroll": true
 }

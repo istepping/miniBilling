@@ -1,0 +1,11 @@
+<view>
+<view class='outer'>
+  <view>
+  <image class="img" src='/images/mineicon/thanks.png'></image>
+  </view>
+  <text style='color:lightgray'>感谢您的使用</text>
+</view>
+<view style=' '>
+    <text style='margin:40rpx;font-size:30rpx;color:lightgray'>有任何反馈建议，请联系wxid:gebaobaokuaile</text>
+  </view>
+</view>

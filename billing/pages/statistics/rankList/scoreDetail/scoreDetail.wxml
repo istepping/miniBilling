@@ -1,0 +1,44 @@
+<!--pages/statistics/rankList/rankDetail/scoreDetail/scoreDetail.wxml-->
+<!-- <view class='title'>
+  <text style='height:50rpx;  width:100%; display:flex; align-content:center; justify-content: center; font-size:medium;color:white;'>比邻分数详情</text>
+</view> -->
+<view class='body'>
+  <view class='score_info'>
+    <canvas canvas-id="ringCanvas" disable-scroll="true" class="billingscore"></canvas>
+  </view>
+  <view class='details'>
+    <view class='details_title'>
+      <text style='margin-left:5%; height:fit-content; width:fit-content; font-size:medium;'>分数构成：</text>
+    </view>
+    <view class='details_info'>
+      <view class='details_line'>
+        <view class='details_item'>
+          <view style='height:10%;width:100%;'></view>
+          <canvas canvas-id='ringCanvasSmall1' disable-scroll="true" style='height:90%;width:100%;'>比邻系数</canvas>
+        </view>
+        <view class='details_item'>
+          <view style='height:10%;width:100%;'></view>
+          <canvas canvas-id='ringCanvasSmall2' disable-scroll="true" style='height:90%;width:100%;'>大金额消费</canvas>
+        </view>
+        <view class='details_item'>
+          <view style='height:10%;width:100%;'></view>
+          <canvas canvas-id='ringCanvasSmall3' disable-scroll="true" style='height:90%;width:100%;'>重复购买</canvas>
+        </view>
+      </view>
+      <view class='details_line'>
+        <view class='details_item'>
+          <view style='height:10%;width:100%;'></view>
+          <canvas canvas-id='ringCanvasSmall4' disable-scroll="true" style='height:90%;width:100%;'>消费波动</canvas>
+        </view>
+        <view class='details_item'>
+          <view style='height:10%;width:100%;'></view>
+          <canvas canvas-id='ringCanvasSmall5' disable-scroll="true" style='height:90%;width:100%;'>经济率</canvas>
+        </view>
+        <view class='details_item'>
+          <view style='height:10%;width:100%;'></view>
+          <canvas canvas-id='ringCanvasSmall6' disable-scroll="true" style='height:90%;width:100%;'>常用种类占比</canvas>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

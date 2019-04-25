@@ -1,0 +1,60 @@
+<!--pages/add.wxml-->
+<view class='personal-container'>
+  <view class='charts'>
+  <view class='option-bar'>
+    <image class="chart-option {{chartType == 0 ? 'on' : ''}}"
+      src="/images/statistics_img/pie-chart{{chartType == 0 ? '-chosen' : ''}}.png"
+      data-type='0' bindtap='changeChartType'></image>
+    <image class="chart-option {{chartType == 1 ? 'on' : ''}}"
+      src="/images/statistics_img/line-chart{{chartType == 1 ? '-chosen' : ''}}.png"
+      data-type='1' bindtap='changeChartType'></image>
+    
+    <view style='flex:1'></view>
+
+    <view class='tab'>
+      <picker mode='date' value='{{year}}' fields='year' bindchange='changeYear'>
+        <view class="tab-item {{statType == 'year' ? 'chosen' : ''}}">{{year}}年</view>
+      </picker>
+
+      <picker mode='date' value="{{year + '-' + month}}" fields='month' bindchange='changeMonth'>
+        <view class="tab-item {{statType == 'month' ? 'chosen' : ''}}" >{{statType != 'year' ? month : ''}}月</view>
+      </picker>
+
+      <view class="tab-item {{statType == 'week' ? 'chosen' : ''}}" bindtap='toWeek'>本周</view>
+      
+    </view>
+  </view>
+
+  <view class='nothing' style="display:{{nothing ? 'flex' : 'none'}}">
+    <image style='width:300rpx; height:300rpx;' src='/images/statistics_img/nothing.png'></image>
+    <text style='margin-top:10rpx; font-size:30rpx; color:#cdcdcd;'>-_- 什么都没有呢~</text>
+  </view>
+
+  <swiper style="width:100%; height:500rpx; display:{{nothing ? 'none' : 'block'}}" indicator-dots='true' indicator-active-color='#FDD853' current='{{chartType}}' bindchange='switchChartType'>
+    <swiper-item>
+      <canvas canvas-id='pieChart' class="chart" disable-scroll="true"></canvas>
+    </swiper-item>
+
+    <swiper-item style='width:{{windowWidth}};'>
+      <canvas canvas-id='lineChart' class="chart" disable-scroll="true"></canvas>
+    </swiper-item>
+  </swiper>
+  </view>
+
+  <view class='bar'>
+    <image style='width:50rpx;height:50rpx;' src='/images/statistics_img/消费排行榜.png'></image>
+    <text style='font-size:30rpx;padding-left:10rpx;'>支出排行</text>
+  </view>
+
+  <scroll-view style='height: 570rpx;' scroll-y='true'>
+    <view class='list-item' wx:for="{{statType != 'week' ? exRankingList : exWeekRankingList}}" wx:key=''>
+      <image class='item-image' src='/images/account/exCls/{{item.type}}.png'></image>
+      <view class='item-others'>
+        <text style='font-size: 25rpx;margin-bottom: 10rpx;'>{{item.type}}  {{item.sumMoney}}</text>
+        <view style='border-radius: 10rpx;width:{{item.sumMoney / topSumMoney * 100}}%;background: #FDD853;height: 15rpx;'></view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+

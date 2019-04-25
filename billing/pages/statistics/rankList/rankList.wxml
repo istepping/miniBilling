@@ -1,0 +1,23 @@
+<!-- 顶部封面 -->
+<view class='top'>
+  <image class='cover' src='{{data.pranks[0].avatarUrl}}'></image>
+  <!-- 日期选择器 -->
+  <picker class='picker_date' bindchange='dateChange' mode='date' fields='month'>{{currentYear}}年{{currentMonth}}月</picker>
+  <view class='setCover'>{{data.pranks[0].nickName}} sets cover</view>
+</view>
+<!-- 个人项 -->
+<view class='person' bindtap='goDetail' data-id1='{{data.prank[0].rScore1}}' data-id2='{{data.prank[0].rScore2}}' data-id3='{{data.prank[0].rScore3}}' data-id4='{{data.prank[0].rScore4}}' data-id5='{{data.prank[0].rScore5}}' data-id6='{{data.prank[0].rScore6}}' data-id7='{{data.prank[0].rScore}}'>
+  <view class='rank'>{{data.prank[0].rRank}}</view>
+  <image class='avatar' src='{{data.userInfo.uAvatarurl}}'></image>
+  <view class='nickName'>{{data.userInfo.uNickname}}</view>
+  <view class='score {{item.score<300? "red":""}}'>{{data.prank[0].rScore}}</view>
+</view>
+<!-- 列表页面 -->
+<view class='list'>
+  <view class='item' wx:for='{{data.pranks}}' wx:key='' bindtap='goDetail' data-id1='{{item.prank.rScore1}}' data-id2='{{item.prank.rScore2}}' data-id3='{{item.prank.rScore3}}' data-id4='{{item.prank.rScore4}}' data-id5='{{item.prank.rScore5}}' data-id6='{{item.prank.rScore6}}' data-id7='{{item.prank.rScore}}'>
+      <view class='rank'>{{item.rank}}</view>
+      <image class='avatar' src='{{item.avatarUrl}}'></image>
+      <view class='nickName'>{{item.nickName}}</view>
+      <view class='score {{item.score<300? "red":""}}'>{{item.score}}</view>
+  </view>
+</view>

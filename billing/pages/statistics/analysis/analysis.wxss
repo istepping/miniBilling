@@ -1,0 +1,97 @@
+/* pages/statistics/analysis/analysis.wxss **/
+.ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+.chart{
+  height:650rpx;
+  width: 100%;
+  display: flex;
+  flex:column;
+  align-items: center;
+}
+
+.radar-chart{
+  height:85%;
+  width:inherit;
+  align-items: center;
+}
+
+.title{
+  width:100%;
+  height:80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color:whitesmoke;
+}
+
+.title_item{
+  height:fit-content;
+  width:40%;
+  font-size:medium;
+  text-align:center;
+}
+
+.lists{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(241, 240, 240);
+}
+
+.lists_item{
+  height:200rpx;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 5rpx;
+}
+
+.item_img{
+  height:120rpx;
+  width:16%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-left: 20rpx;
+}
+
+.item_detail{
+  height:150rpx;
+  width:65%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-left: 5rpx;
+  margin-right: 15rpx;
+}
+
+.item_name{
+  font-size:medium;
+  text-align: left;
+}
+
+.item_brand{
+  font-size:small;
+  text-align: left;
+  margin-top: 2rpx;
+  color:grey;
+}
+.item_grade{
+  font-size:small;
+  text-align: left;
+  margin-top: 2rpx;
+  color:grey;
+}
+.item_date{
+  font-size:small;
+  text-align: left;
+  margin-top: 2rpx;
+  color:grey;
+}

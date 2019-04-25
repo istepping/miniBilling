@@ -1,0 +1,125 @@
+/* pages/recommend/recommend.wxss */
+.input{
+  width: 100%;
+  height:80rpx;
+  background-color: #fdd853;
+  display: flex;
+}
+.input-1{
+  display: flex;
+  width: 90%;
+  height:60rpx;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow:0.2rpx 0.2rpx 0.2rpx 0.2rpx gainsboro;
+  margin-top: 0rpx;
+  margin-left: 5%;
+  position: absolute;
+  z-index: 1;
+  font-size: 13px;
+}
+.icon1-style{
+  vertical-align: middle;
+  align-self: center;
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+}
+
+
+.ip-style{
+  width: 200px;
+  height:100%;
+  border: 0px;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10rpx;
+  font-size: 13px;
+}
+.tab {
+  width: 100%;
+  border-bottom: 2rpx solid #FDD853;
+  display: flex;
+  white-space: nowrap;
+  flex-direction: row;
+  text-align: center;
+  line-height: 80rpx;
+  height: 88rpx;
+}
+.tab-item {
+  font-size: 30rpx;
+  font-family: sans-serif;
+  display: inline-block;
+  margin-left: 40rpx;
+  margin-right: 25rpx;
+}
+.on {
+  font-weight: bolder; 
+  border-bottom: 5rpx solid #FDD853;
+}
+.lists{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 900rpx;
+}
+.list_item{
+  height:200rpx;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+.item_img{
+  height:150rpx;
+  width:345rpx;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-left: 20rpx;
+  background: red;
+}
+.item_detail{
+  height:200rpx;
+  width:65%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-left: 50rpx;
+}
+
+.item_title{
+  font-size:30rpx;
+  text-align: left;
+   overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+
+.item_reason{
+    font-size:small;
+  text-align: left;
+  margin-top: 2rpx;
+  color:grey;
+}
+.item_price{
+  font-size:small;
+  text-align: left;
+  margin-top: 2rpx;
+  color:grey;
+}
+.item_place{
+  font-size:small;
+  text-align: left;
+  margin-top: 2rpx;
+  color:grey;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}

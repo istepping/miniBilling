@@ -1,0 +1,16 @@
+
+<view wx:if="{{detaillist3.length==0}}" class='noThing'>
+<image class='noThingImg' src='/images/statistics_img/sorry.png'></image>
+<text style='color:lightgray'>暂无数据</text>
+</view>
+<view wx:elif="{{detaillist3 != null}}">
+  <view wx:for="{{detaillist3}}" wx:for-item="item" wx:for-index="index" >
+    <view class='list_item' wx:key='this' data-index='{{index}}' bindtap='optionTap' data-tid='{{item.tId}}'>   
+    <view style='width:90%;margin-right:300rpx;display:flex;align-content:center;'>
+        <image style='width:30rpx; height: 30rpx; margin:10rpx;' src="{{imglist[ppindex].img}}"></image> 
+      <text class='list_title'>{{item.tName}}</text>
+    <text class='list_money'>:  {{item.money}}元</text>
+      </view>
+    </view>
+  </view>
+</view>

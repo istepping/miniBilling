@@ -1,0 +1,12 @@
+.outer{
+  width: 100%;
+  height: 600rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.img{
+  width: 300rpx;
+  height: 300rpx;
+}

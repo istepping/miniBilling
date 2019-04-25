@@ -1,0 +1,13 @@
+<view class='personal'>
+  <view class="icon">
+    <image style='width:300rpx;height:300rpx;margin:50rpx;' src='/images/icons/微信.png'></image>
+  </view>
+  <view class="name">隐私设置</view>
+</view>
+
+<view class='List'>
+<view class='kaiqi'>
+<view class='text'>允许分析我的消费数据</view>
+<view class='button'><switch checked='{{ifOpen}}' bindchange="switchChange"/></view>
+</view>
+</view>

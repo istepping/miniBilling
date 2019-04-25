@@ -1,0 +1,187 @@
+/* pages/bill/bill_detail/bill_detail.wxss */
+.money{
+   width: 100%;
+  height: 250rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #c3c3c3;
+  display: flex;
+  align-items: center;
+}
+.moneyDetailout{
+font-size: 80rpx;
+margin-left: 30rpx;
+color: red;
+}
+.moneyDetailin{
+font-size: 80rpx;
+margin-left: 30rpx;
+color: green;
+}
+.li{
+  display: flex;
+  width: 90%;
+  height: 100rpx;
+  margin-left: 5%;
+  border-bottom: 1rpx solid #c3c3c3;
+  align-items: center;
+  justify-content: center;
+}
+.li_image1{
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62rpx;
+  height: 62rpx;
+  background: #fff;
+  border-radius: 100%;
+  border:  5rpx solid red;
+}
+.li_image2{
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62rpx;
+  height: 62rpx;
+  background: #fff;
+  border-radius: 100%;
+  border:  5rpx solid #FDD853;
+}.li_image3{
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62rpx;
+  height: 62rpx;
+  background: #fff;
+  border-radius: 100%;
+  border:  5rpx solid blue;
+}.li_image4{
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62rpx;
+  height: 62rpx;
+  background: #fff;
+  border-radius: 100%;
+  border:  5rpx solid green;
+}
+.li_image_text1{
+    color:  red;
+}
+.li_image_text3{
+    color:  blue;
+}
+.li_image_text4{
+    color:  green;
+}
+.li_image2 image{
+   width: 50rpx;
+  height: 50rpx;
+}
+.li_type{
+  font-size: 26rpx;
+  display: inline-block;
+  width: 10%;
+  color: #c3c3c3
+}
+.li_gType{
+  display: inline-block;
+  width: 15%;
+  font-size: 30rpx;
+}
+.li_jiantou{
+   width: 5%;
+  height: 50rpx;
+  display: inline-block;
+}
+.li_jiantou image{
+  width: 20rpx;
+  height: 20rpx;
+}
+.li_gType2{
+  display: inline-block;
+  width: 20%;
+  font-size: 30rpx;
+  margin-right: 32%
+}
+.li_gDetail{
+  display: inline-block;
+  font-size: 30rpx;
+  width: 60%;
+  margin-right: 12%
+}
+.li_saveTime{
+    display: inline-block;
+  font-size: 30rpx;
+  width: 60%;
+  margin-right: 12%
+}
+.li_location{
+    display: inline-block;
+  font-size: 30rpx;
+  width: 60%;
+  margin-right: 12%
+}
+.button{
+  display: flex;
+  margin-top: 250rpx;
+  width: 100%;
+  height: 200rpx;
+  align-items: center;
+  justify-content: center;
+}
+.rewrite{
+    display: inline-block;
+    width: 50%;
+    height: 100rpx;
+    background-color: #fdd853;
+    color: white;
+    border-color: black;
+  border-radius: 98rpx;
+
+}
+.delete{
+    display: inline-block;
+    width: 20%;
+    height: 100rpx;
+    background-color: red;
+    color: white;
+    border-color: black;
+      border-radius: 98rpx;
+
+}
+.btn_text{
+  font-size: 30rpx;
+  color: white;
+  margin-top: 10rpx;
+}
+.btn_hover1{
+  background-color: red;
+}
+.btn_hover2{
+ background-color: #fdd853;
+}
+.LabelList{
+  margin-top: 10rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+    align-items: center;
+  justify-content: left;
+}
+.Label{
+  display: flex;
+  background-color: #e6e6e6;
+  width: 20%;
+  font-size: 25rpx;
+  height: 50rpx;
+    border-radius: 98rpx;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+  align-items: center;
+  justify-content: center;
+
+}

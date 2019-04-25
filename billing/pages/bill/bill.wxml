@@ -1,0 +1,117 @@
+<view class='box'>
+  <view class="smallbox1">
+      <view class='title1'>{{year}}年</view>
+      <view class='title'>
+      <view class='title2'>{{month}}</view>
+      <view class='title3'>月</view>
+      <view class='title_image'>
+          <image src='../../../images/billicon/竖线.png'  ></image>
+      </view>
+      </view>
+  </view>
+
+  <view class='smallbox2'>
+        <view class='title1'>收入</view>
+        <view class='title4'>+{{totalimTomonth}}</view>
+  </view>
+    <view class='smallbox2'>
+        <view class='title1'>支出</view>
+        <view class='title4'>-{{totalexTomonth}}</view>
+    </view>
+    <view class='smallbox2'>
+        <view class='title1'>结余</view>
+        <view class='title4'>{{totalBalanceTomonth}}</view>
+  </view>
+
+</view>
+
+
+<view class='button'>
+  <button class='btn1' bindtap='toaccount'>
+    <image src='../../../images/billicon/add.png'  class='button_ima'></image>
+    <view class='button_text'>记一笔</view>
+  </button>
+</view>
+
+<view class='detail'  bindtap='tobill_day'>
+  <!--左边开始-->
+  <view class='detail_left_image1'>
+  <view class='detail_left_image_text1'>{{date1}}</view>
+  </view>
+  <view class="detail_left">
+      <view class='detail_left_up'>今天</view>
+      <view class='detail_left_down'>{{date}}</view>
+  </view>
+<!--左边结束-->
+<!--右边开始-->
+  <view class="detail_right">
+      <view class='detail_right_up'>-{{totalexToday}}</view>
+      <view class='detail_right_down'>+{{totalimToday}}</view>
+  </view>
+  <view class="detail_right_image">
+      <image src='../../../images/mineicon/huijiantou.jpeg'></image>
+  </view>
+</view>
+
+<view class='detail' bindtap='tobill_week'>
+  <!--左边开始-->
+   <view class='detail_left_image2'>
+  <image src='{{image[1].ima}}' ></image>
+  </view>
+  <view class="detail_left">
+      <view class='detail_left_up'>本周</view>
+      <view class='detail_left_down'>{{Toweekfirst}}-{{Toweeklast}}</view>
+  </view>
+<!--左边结束-->
+<!--右边开始-->
+  <view class="detail_right">
+      <view class='detail_right_up'>-{{totalexToweek}}</view>
+      <view class='detail_right_down'>+{{totalimToweek}}</view>
+  </view>
+<!--右边结束-->
+  <view class="detail_right_image">
+      <image src='../../../images/mineicon/huijiantou.jpeg'></image>
+  </view>
+</view>
+
+<view class='detail' bindtap='tobill_month'>
+  <!--左边开始-->
+   <view class='detail_left_image3'>
+  <view class='detail_left_image_text3'>{{month}}</view>
+  </view>
+  <view class="detail_left">
+      <view class='detail_left_up'>本月</view>
+      <view class='detail_left_down'>{{month}}.1-{{month}}.{{MaxMonth}}</view>
+  </view>
+<!--左边结束-->
+<!--右边开始-->
+  <view class="detail_right">
+      <view class='detail_right_up'>-{{totalexTomonth}}</view>
+      <view class='detail_right_down'>+{{totalimTomonth}}</view>
+  </view>
+<!--右边结束-->
+  <view class="detail_right_image">
+      <image src='../../../images/mineicon/huijiantou.jpeg'></image>
+  </view>
+</view>
+
+<view class='detail' bindtap='tobill_year'>
+  <!--左边开始-->
+   <view class='detail_left_image4'>
+  <view class='detail_left_image_text4'>{{year1}}</view>
+  </view>
+  <view class="detail_left">
+      <view class='detail_left_up'>本年</view>
+      <view class='detail_left_down'>{{year}}年</view>
+  </view>
+<!--左边结束-->
+<!--右边开始-->
+  <view class="detail_right">
+      <view class='detail_right_up'>-{{totalexToyear}}</view>
+      <view class='detail_right_down'>+{{totalimToyear}}</view>
+  </view>
+<!--右边结束-->
+  <view class="detail_right_image">
+      <image src='../../../images/mineicon/huijiantou.jpeg'></image>
+  </view>
+</view>

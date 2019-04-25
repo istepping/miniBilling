@@ -1,0 +1,32 @@
+<!--pages/statistics/user_statistics/details1/details1.wxml-->
+
+  <view class='option-bar'>
+    <image class="chart-option {{chartType == 0 ? 'on' : ''}}"
+      src="/images/billicon/add{{chartType == 0 ? 'bill' : ''}}.png"
+      data-type='0' bindtap='changeChartType'></image>
+    <image class="chart-option {{chartType == 1 ? 'on' : ''}}"
+      src="/images/statistics_img/line-chart{{chartType == 1 ? '-chosen' : ''}}.png"
+      data-type='1' bindtap='changeChartType'></image>
+  </view>
+
+<swiper style="width:100%; height:1200rpx; display:{{nothing ? 'none' : 'block'}}"   current='{{chartType}}' bindchange='switchChartType'>
+    <swiper-item>
+       <view wx:for="{{detaillist1}}" wx:for-item="item" wx:for-index="index" wx:key=''>
+        <view class='list_item' wx:key='this' data-index='{{index}}' bindtap='optionTap' data-tid='{{item.tId}}'>   
+        <view style='width:90%;margin-right:300rpx;display:flex;align-content:center;'>
+            <image style='width:30rpx; height: 30rpx; margin:10rpx;' src="{{imglist[index].img}}"></image> 
+          <text class='list_title'>{{item.tName}}</text>
+          <text class='list_money'>:  {{item.money}}元</text>
+          </view>
+          <image style='width:20rpx; height:20rpx;margin-right:20rpx'
+          src='/images/mineicon/huijiantou.jpeg'></image>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item style='padding-top:50rpx;'>
+    
+      <canvas canvasId='lineCanvas' class="charts" ></canvas>
+    </swiper-item>
+  </swiper>
+
+ 

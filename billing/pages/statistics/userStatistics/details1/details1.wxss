@@ -1,0 +1,60 @@
+/* pages/statistics/userStatistics/details1/details1.wxss */
+/* pages/statistics/user_statistics/details1/details1.wxss */
+.list_item{
+  display: flex;
+  width:95%;
+  height: 90rpx;
+  border:  1px solid lightgray;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+  margin-top: 15rpx;
+  align-items: center;
+}
+
+.list_title{
+  font-size: 40rpx;
+  text-align: left;
+  margin-left: 15rpx;
+}
+.list_money{
+  font-size: 35rpx;
+  text-align: left;
+  margin-left: 10rpx;
+  color: lightblue;
+}
+.personal-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20rpx; 
+  width: 100%;
+  height: 100%;
+  align-content: center;
+}
+.charts {
+  margin:25rpx;
+  width: 700rpx;
+  height: 400rpx;
+  border-radius: 20rpx;
+  align-self: center;
+  box-shadow: 0 0 5rpx 5rpx #cdcdcd;
+}
+.option-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: max-content;
+}
+
+.chart-option {
+  width: 50rpx;
+  height: 50rpx;
+  padding: 15rpx 30rpx 15rpx 30rpx;
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+}
+
+.chosen {
+  color: #FDD853;
+  border-bottom: 5rpx solid #FFD853
+}

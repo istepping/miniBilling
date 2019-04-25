@@ -1,0 +1,23 @@
+<view style='position: absolute;'>
+<view style='display: flex;flex-direction: row;align-items: center;'>
+<view class='pickerSection' hover-class='btn_hover'>
+  <picker mode="date" value="{{date}}" start="2017-06" end="2020-12" bindchange="bindDateChange" fields='month' >
+    <view>
+      <text style='color:black;font-size:32rpx;'>当前月份：{{date}}</text>
+      </view>
+  </picker>
+  </view>
+  <view class='button1' bindtap='todetails' hover-class='btn_hover' >
+  <text style='color:black;font-size:32rpx;'>详情</text></view>
+</view>
+<!-- 饼图 -->
+<view style='width: 650rpx;height: 70rpx;'>
+<view class='personal-container' style='z-index:2;'>
+  <canvas canvas-id='pieChart' class="pieChart" disable-scroll="true"></canvas>
+  <view style='width:750rpx;border-top:1px solid lightgray;margin-bottom:250rpx;margin-left:10rpx;margin-right:10rpx;text-align: center;'>
+          <text style='margin_left:20rpx;font-size:25rpx;line-height:1;color:gray'>* 当前月份所有允许分析的数据显示于饼形图中。\n * 我们可以将此图与个人统计的消费图进行对比</text>
+  </view>
+</view>
+</view>
+</view>
+ 

@@ -9,22 +9,22 @@ Page({
     itemlist:[
     {
      "txt":"个人统计",
-     "img":'/images/statistics_img/个人统计.png',
+     "img":'/images/statistics_img/icon1.png',
       "url":'/pages/statistics/personal/personal',
     },
       {
         "txt": "群体统计",
-        "img": '/images/statistics_img/用户统计.png',
+        "img": '/images/statistics_img/icon2.png',
         "url": '/pages/statistics/userStatistics/pie_chart/pie_chart',
       },
       {
         "txt": "行为分析",
-        "img": '/images/statistics_img/行为分析.png',
+        "img": '/images/statistics_img/icon3.png',
         "url": '/pages/statistics/analysis/analysis',
          },
       {
         "txt": "排行榜",
-        "img": '/images/statistics_img/排行榜.png',
+        "img": '/images/statistics_img/icon4.png',
         "url": '/pages/statistics/rankList/rankList',
       },
     ],

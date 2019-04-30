@@ -29,3 +29,14 @@
 button {
   margin-top: 450rpx;
 }
+.submit {
+  display: flex;
+  background: #FDD853;
+  text-align: center;
+  justify-content: center;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  border-radius: 10rpx; 
+  width: 670rpx;
+  margin-top: 40rpx;
+}

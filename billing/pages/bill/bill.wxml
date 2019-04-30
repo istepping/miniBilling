@@ -5,7 +5,7 @@
       <view class='title2'>{{month}}</view>
       <view class='title3'>月</view>
       <view class='title_image'>
-          <image src='../../../images/billicon/竖线.png'  ></image>
+          <image src='../../../images/billicon/icon2.png'  ></image>
       </view>
       </view>
   </view>

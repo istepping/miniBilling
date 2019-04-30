@@ -7,11 +7,6 @@
 </view>
 </view>
 <view class='setList'>
-<view class='schoolhome' data-target='schoolhome' bindtap='navTo1'>
-<view class='picture'><image src='/images/mineicon/fangzi.png'></image></view>
-<view class='dis'><view class='text'>家校互通</view></view>
-<view class='picture right'><image src='/images/mineicon/jiantou.png'></image></view>
-</view>
 <view class='personal' data-target='personal' bindtap='navTo2'>
 <view class='picture'><image src='/images/mineicon/yinsi.png'></image></view>
 <view class='dis'><view class='text'>隐私设置</view></view>
@@ -19,7 +14,7 @@
 </view>
 <view class='myset' data-target='myset' bindtap='navTo3'>
 <view class='picture'><image src='/images/mineicon/shezhi.png'></image></view>
-<view class='dis'><view class='text'>我的设置</view></view>
+<view class='dis'><view class='text'>个人信息</view></view>
 <view class='picture right'><image src='/images/mineicon/jiantou.png'></image></view>
 </view>
 <view class='aboutus' data-target='aboutus' bindtap='navTo4'>

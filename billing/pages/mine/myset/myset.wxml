@@ -18,24 +18,14 @@
   <picker mode="selector" range='{{sex}}' value="{{sexIndex}}" range-key='selectSex' bindchange="bindSexChange">
   {{userSex}}</picker>
   </view>
-  <!-- <view class="section">
-    <text>生日</text>
-    <picker mode="date" value="{{date}}" start="1980-01-01" end="2050-12-31" bindchange="bindDateChange"><view class="picker">{{date}}</view></picker>
-  </view> -->
   <view class="section">
     <text>所在学校</text>
     <input value="{{school}}" placeholder='请填写' bindblur="blurSchool" bindinput='inputSchool' focus:0/>
   </view>
   <view class="section">
     <text>入学年份</text>
-    <!-- <input value="{{ name }}" bindblur="blurName" bindconfirm="changeName" auto-focus /> -->
     <picker mode="selector" range='{{gradeRange}}' value='{{gradeIndex}}' range-key="year" bindchange='listenerPickerSelected'>
     <text>{{userGrade}}</text></picker>
-   <!-- <picker mode="date" value="{{year}}"  bindchange="bindyearChange"><view class="picker">{{year}}</view></picker> -->
   </view>
-  
-  <view class="section">
-  <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
-		disabled="{{disabled}}" bindtap="submit" hover-class="other-button-hover"> 保存</button>
-  </view>
+  <view class="submit" bindtap='submit'>提交</view>
 </view>

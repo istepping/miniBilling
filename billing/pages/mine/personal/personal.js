@@ -19,21 +19,16 @@ Page({
       content: Number(this.data.ifOpen)
     }
     console.log(data.content);
-    server.request("/setting/setBillPrivate", data, function (res) {
+    server.requestWithoutLoading("/setting/setBillPrivate", data, function (res) {
     });
-    wx.showToast({
-      title: '修改成功',
-      icon: 'succes',
-      duration: 1000,
-      mask: true
-    })
+  },
+  onLoad:function(option){
+    if (option.id=='1'){
+      this.setData({
+        ifOpen: true
+      }) 
+    }
   },
   onShow:function(e){
-    var that = this;
-    server.request("/setting/getSetting", '', function (res) {
-      that.setData({
-        ifOpen: res.data.data.setting.uPrivate
-      })
-    });
   }
 })

@@ -1,6 +1,6 @@
 <view class='personal'>
   <view class="icon">
-    <image style='width:300rpx;height:300rpx;margin:50rpx;' src='/images/icons/微信.png'></image>
+    <image style='width:300rpx;height:300rpx;margin:50rpx;' src='/images/icons/icon3.png'></image>
   </view>
   <view class="name">隐私设置</view>
 </view>

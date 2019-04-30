@@ -1,11 +1,12 @@
-<view>
-<view class='outer'>
-  <view>
-  <image class="img" src='/images/mineicon/thanks.png'></image>
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class='page-body' style="flex-direction:column">
+  <image src='/images/title.png' class='logo' mode='scaleToFile' ></image>
+  <view class='title'>比零坊</view>
+  <view class='version'>V.2.0.0</view>
   </view>
-  <text style='color:lightgray'>感谢您的使用</text>
-</view>
-<view style=' '>
-    <text style='margin:40rpx;font-size:30rpx;color:lightgray'>有任何反馈建议，请联系wxid:gebaobaokuaile</text>
+  <view class='page-bottom' style="flex-direction:column">
+  <view class='title1'>如果您有问题，可以随时联系我们。</view>
+  <view class='title1'>邮箱:2372388646@qq.com</view>
   </view>
 </view>

@@ -10,7 +10,7 @@
     <swiper-item>
       <view style='padding-left: 20rpx;padding-right: 20rpx;'>
         <view class='item-price'>
-          <input style='font-size:100rpx; height:132rpx;' placeholder='0' type='digit' focus='true'
+          <input style='font-size:100rpx; height:132rpx;' placeholder='0' type='digit' focus='{{false}}'
             value='{{exprice}}' bindinput='getPrice' bindblur='checkPrice'></input>
         </view>
 
@@ -29,7 +29,7 @@
         <view class='line'/>
 
         <view class='item-cls'>
-          <text style='font-size:20rpx;'>分类</text>
+          <text style='font-size:20rpx;'>类别</text>
           <view class='item-specification'>
             <text style='font-size:35rpx;'>{{exCls > -1 ? exClsList[exCls].tName : '无'}}</text>
             <picker style="display:{{exCls != 9 ? 'flex' : 'none'}}"
@@ -57,7 +57,7 @@
                 range="{{brandArray}}" bindchange="changeBrand">
                 <text class='brand-picker'>{{brandArray[brandIndex]}}</text>
               </picker>
-              <input style="display:{{(brandArray.length == 0 || brandArray[brandIndex] == '其他') ? 'flex' : 'none'}}; flex:1;font-size:35rpx;" placeholder='品牌信息'
+              <input style="display:{{(brandArray.length == 0 || brandArray[brandIndex] == '其他') ? 'flex' : 'none'}}; flex:1;font-size:35rpx;" placeholder='请输入品牌信息'
               value='{{exbrand}}' bindinput='getBrand'></input>
             </view>
           </view>
@@ -88,7 +88,7 @@
     <swiper-item>
       <view style='padding-left: 20rpx;padding-right: 20rpx;'>
         <view class='item-price'>
-          <input style='font-size:100rpx; height:132rpx;' placeholder='0' type='digit' focus='true'
+          <input style='font-size:100rpx; height:132rpx;' placeholder='0' type='digit' focus='{{false}}'
             value='{{inprice}}' bindinput='getPrice' bindblur='checkPrice'></input>
         </view>
 

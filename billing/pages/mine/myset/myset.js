@@ -81,10 +81,7 @@ onShow: function () {
   },
   changeSchool: function (e) {
     var schoolName = e.detail.value.trim();
-    // if (name) {
-    //   wx.setStorageSync('name', name);
-    // }
-},
+    },
   inputSchool: function (e) {
     this.data.school = e.detail.value;
   },
@@ -102,16 +99,8 @@ onShow: function () {
     server.request("/user/updateInfo", data, function (res) {
     });
     wx.showToast({
-      title: '成功',
-      icon: 'succes',
-      duration: 1000,
-      mask: true
+      title: '提交成功',
+      icon: 'none',
     })
   }
-  //baocun
-// var sch=$("#school").val();
-// wx.request({
-//   url: 'hah/dgah',
-//     :post,
-//     sss:sch
 })

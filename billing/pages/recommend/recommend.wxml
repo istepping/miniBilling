@@ -2,7 +2,7 @@
 <!-- 搜索栏 -->
 <view class="input">
  <view class="input-1">
-    <image class='icon1-style' src='/images/icons/推荐.png'></image>
+    <image class='icon1-style' src='/images/icons/icon2.png'></image>
     <input class='ip-style' placeholder='根据您的喜好与消费类型推荐好物' bindinput='searchChange' confirm-type='search' bindconfirm='search' value='{{searchContent}}'></input>
     </view>
 </view>

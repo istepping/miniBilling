@@ -4,7 +4,8 @@ Page({
 
   data: {
     avatar: '',
-    name: ''
+    name: '',
+    ifOpen:''
   },
    
    onLoad:function(){
@@ -12,11 +13,16 @@ Page({
    },
   onShow: function () {
     var that = this;
-    server.requestWithoutLoading("/userInfo/getUserInfo", '', function (res) {
+    server.requestWithoutLoading("/userInfo/getUserInfo", '', function (res)     {
       console.log(res);
       that.setData({
         avatar: res.data.data.userInfo.uAvatarurl,
         name: res.data.data.userInfo.uNickname
+      })
+    });
+    server.requestWithoutLoading("/setting/getSetting", '', function (res) {
+      that.setData({
+        ifOpen: res.data.data.setting.uPrivate
       })
     });
   },
@@ -27,8 +33,9 @@ Page({
     });
   },
   navTo2: function () {
+    var that=this;
     wx.navigateTo({
-      url: '/pages/mine/personal/personal'
+      url: '/pages/mine/personal/personal?id='+that.data.ifOpen
     });
   },
   navTo3: function () {

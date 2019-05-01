@@ -124,7 +124,7 @@ function showLoading() {
 function failLoading() {
   wx.showToast({
     title: '加载失败',
-    icon: 'clear'
+    icon: 'none'
   })
 }
 

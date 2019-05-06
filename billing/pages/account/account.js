@@ -24,16 +24,14 @@ Page({
     //当前选择收入分类索引
     inCls: 0,
 
+    rData: [],
     clsList: [],
-    exClsList: [],
-    inClsList: [],
-    //支出分类
-    //              0       1       2      3       4      5       6       7      8       9
-    //exClsList: ['饮食', '服饰', '运动', '学习', '交通', '娱乐', '日用', '电子', '通讯', '其他'],
+    //支出分类     0       1       2      3       4      5       6       7      8       9
+    exClsList: ['饮食', '服饰', '运动', '学习', '交通', '娱乐', '日用', '电子', '通讯', '其他'],
     //收入分类
-    //inClsList: ['生活费', '兼职', '奖学金', '其他'],
+    inClsList: ['生活费', '兼职', '奖学金', '其他'],
 
-    specificCls: [
+    /*specificCls: [
 
       //详细分类 一级
       [{
@@ -128,7 +126,6 @@ Page({
         children: ['排插', '充电', '台灯', '其他']
       }]
     ],
-
     brand: [{
         type: '上衣',
         brands: ['Nike', 'Adidas', '361', '乔丹', '安踏', '李宁', '特步', '新百伦', '美特斯邦威', '其他']
@@ -166,26 +163,28 @@ Page({
         type: '洗涤',
         brands: ['立白', '超能', '奥妙', '汰渍', '其他']
       }],
-    brandArray: [],
-    brandIndex: 0,
+      */
 
-    flexColumn: [],
-    flexIndex: [],
+    
+    
+    
+    
+    specificCls: Array(10),
     specificInfo: '详细分类在这里',
+    subType: '',
+    subTypeBrand: '',
+
+    subTypeAndBrand:[[],[]],
+    index: [0, 0],
+    flag: false,
 
     exName: false,
-    exDate: true,
+    exDate: false,
     exNote: false,
+    exRate: false,
 
-    inName: false,
-    inDate: true,
+    inDate: false,
     inNote: false,
-
-    markers: [],
-    longitude: '',
-    latitude: '',
-    address: '',
-    cityInfo: {}
 
   },
 
@@ -206,6 +205,35 @@ Page({
 
   //改变支出类型
   changeExCls: function (event) {
+    if (this.data.exCls !== event.target.dataset.cur) {
+      this.setData({
+        exCls: event.target.dataset.cur
+      })
+
+      var specificCls = this.data.specificCls
+      if (typeof(specificCls[this.data.exCls]) != 'undefined') {
+        var subType = specificCls[this.data.exCls].subType,
+            subTypeBrand = specificCls[this.data.exCls].subTypeBrand[0]
+        var subTypeAndBrand = [[],[]]
+        subTypeAndBrand[0] = subType
+        subTypeAndBrand[1] = subTypeBrand
+        this.setData({
+          flag: true,
+          subTypeAndBrand: subTypeAndBrand,
+          subType: subType[0],
+          subTypeBrand: subTypeBrand[0]
+        })
+      } else {
+        this.setData({
+          flag: false,
+          subTypeAndBrand: [[],[]],
+          subType: '',
+          subTypeBrand: '',
+        })
+      }
+    }
+  },
+  /*changeExCls: function (event) {
     if (this.data.exCls !== event.target.dataset.cur) {
       this.setData({
         exCls: event.target.dataset.cur
@@ -269,7 +297,7 @@ Page({
     })
         
     }
-  },
+  },*/
 
   
   //改变收入类型
@@ -279,20 +307,6 @@ Page({
         inCls: event.target.dataset.cur
       })
     }
-  },
-  //更改品牌
-  changeBrand: function (event) {
-    if(this.data.brandIndex != event.detail.value) {
-      var exbrand = this.data.brandArray[event.detail.value]
-      if(exbrand == '其他') {
-        exbrand = ''
-      }
-      this.setData({
-        brandIndex: event.detail.value,
-        exbrand: exbrand,
-      })
-    }
-    
   },
 
   //打开或关闭 名称选项
@@ -334,6 +348,15 @@ Page({
     })
   },
 
+  switchRate: function (event) {
+    var status;
+    if (this.data.curTab == 0) {
+      status = !this.data.exRate;
+      this.setData({
+        exRate: status
+      })
+    }
+  },
   //打开关闭 备注选项
   switchNote: function (event) {
     var status;
@@ -407,91 +430,49 @@ Page({
     }
   },
 
-  //灵活选择器 选择值
-  flexPickerChange: function (event) {
-    this.data.flexIndex = event.detail.value;
-    var specificInfo = '';
-
-    if(typeof(this.data.flexIndex) == 'object') {
-      for (var i = 0; i < this.data.flexIndex.length; i++) {
-        specificInfo +=  '>' + this.data.flexColumn[i][this.data.flexIndex[i]];
-      }
-    } else {
-      specificInfo = '>' + this.data.flexColumn[this.data.flexIndex];
-    }
-    
+  //子分类与品牌 选择器数值改变
+  subtbChange: function (event) {
+    this.setData({
+      index: event.detail.value
+    })
+    var specificInfo = this.data.subTypeAndBrand[0][this.data.index[0]] + this.data.subTypeAndBrand[1][this.data.index[1]]
     this.setData({
       specificInfo: specificInfo,
+      subType: this.data.subTypeAndBrand[0][this.data.index[0]],
+      subTypeBrand: this.data.subTypeAndBrand[1][this.data.index[1]]
     })
   },
 
-  //灵活选择器 列值改变 数据调整
-  flexPickerColumnChange: function (e) {
-    var specificCls = this.data.specificCls;
-    var brand = this.data.brand;
-    var exCls = this.data.exCls;
-    var exClass = this.data.exClsList[this.data.exCls].tName;
-    var fColumn = this.data.flexColumn;
-    var fIndex = this.data.flexIndex;
-    var bArray = new Array;
-    var bIndex = 0;
-    var specificInfo = '';
-    fIndex[e.detail.column] = e.detail.value;
-
-    
-    if (e.detail.column == 0) {
-      for (var i = 0; i < specificCls[1].length; i++) {
-        if (specificCls[1][i].parent == fColumn[0][e.detail.value]) {
-          fColumn[1] = specificCls[1][i].children;
-          break;
-        }
-      }
-      fIndex[1] = 0;
+  //子分类与品牌列值改变 数据调整
+  subtbColumnChange: function (event) {
+    if(event.detail.column == 0) {
+      var subTypeAndBrand = this.data.subTypeAndBrand
+      subTypeAndBrand[1] = this.data.specificCls[this.data.exCls].subTypeBrand[event.detail.value]
+      this.setData({
+        subTypeAndBrand: subTypeAndBrand
+      })
     }
-    for (var i = 0; i < fIndex.length; i++) {
-      specificInfo += '>' + fColumn[i][fIndex[i]];
-    }
-
-    for (var i = 0; i < brand.length; i++) {
-      if (fColumn[0][e.detail.value] == brand[i].type) {
-        bArray = brand[i].brands
-        bIndex = 0
-        break;
-      }
-    }
-
-    this.setData({
-      flexColumn: fColumn,
-      flexIndex: fIndex,
-      brandArray: bArray,
-      brandIndex: bIndex,
-      specificInfo: specificInfo,
-    })
   },
 
   //保存当前记账
   submit: function(event) {
     if(this.data.curTab == 0) {
-      if(this.data.exprice != '' && this.data.exname != '' && this.data.exbrand != '') {
+      if(this.data.exprice != '' && this.data.exname != '' && this.data.subTypeBrand != '') {
       //定义准备提交的数据
         var data = {
           bType: '支出',
           money: this.data.exprice,
           saveTime: this.data.date + ' 00:00:00',
-          gType: this.data.exClsList[this.data.exCls].tName,
-          gType4: this.data.exbrand,
+          gType: this.data.exClsList[this.data.exCls],
           gDetail: this.data.exname,
-          location: this.data.address,
           extraInfo: this.data.exnote
         }
-        if (this.data.exClsList[this.data.exCls].tName == '其他') {
+        if (this.data.exClsList[this.data.exCls] == '其他') {
           
         }
-        else if (typeof (this.data.flexIndex) == 'object') {
-          data.gType2 = this.data.flexColumn[0][this.data.flexIndex[0]]
-          data.gType3 = this.data.flexColumn[1][this.data.flexIndex[1]]
-        } else {
-          data.gType2 = this.data.flexColumn[this.data.flexIndex]
+        else {
+          data.gType2 = this.data.subType
+          data.gType4 = this.data.subTypeBrand
         }
 
       } else {
@@ -515,9 +496,7 @@ Page({
           bType: '收入',
           money: this.data.inprice,
           saveTime: this.data.date + ' 00:00:00',
-          gType: this.data.inClsList[this.data.inCls].tName,
-          gDetail: this.data.inname,
-          location: this.data.address,
+          gType: this.data.inClsList[this.data.inCls],
           extraInfo: this.data.innote,
         };
       } else {
@@ -532,19 +511,11 @@ Page({
     }
     console.log(data);
     var that = this;
-    //金额验证
-    if (! /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(data.money)){
-      wx.showToast({
-        title: '金额格式不正确!',
-        icon:'none'
-      })
-      return;
-    }
     server.request("/bill/addBillWithTypes", data, function(res){
       if(res.data.statusCode) {
         wx.showToast({
           title: '保存成功',
-          icon: 'none',
+          icon: 'success',
           duration: 1000,
           mask: true
         })
@@ -552,12 +523,14 @@ Page({
           exprice: '',
           exname: '',
           exnote: '',
-          exbrand: '',
+          flag: false,
+          subTypeAndBrand: [[],[]],
+          index: [0, 0],
+          subType: '',
+          subTypeBrand: '',
           inprice: '',
-          inname: '',
           innote: '',
-          brandArray: [],
-          inCls: 0,
+          inCls: 3,
           exCls: 9,
         })
       } else {
@@ -622,28 +595,63 @@ Page({
           clsList: res.data.data.gtypes
         });
       }
-      
-      var clsArray = that.data.clsList;
-      var data = {
-        exArray: [],
-        inArray: [],
-        specificArray: [],
-      }
-      for(var i=0; i < clsArray.length; i++) {
-        if(clsArray[i].tBelong == '支出') {
-          data.exArray.push({tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong});
-        } else if(clsArray[i].tBelong == '收入') {
-          data.inArray.push({tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong});
-        } else if (clsArray[i].tBelong == '通用') {
-          data.exArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-          data.inArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-        }
-      }
+    });
 
-      that.setData({
-        exClsList: data.exArray,
-        inClsList: data.inArray,
-      })
+    server.request("/recommend/getRecommend", '', function (res) {
+      if (res.data.statusCode === 1) {
+        var rcm = res.data.data.recommend
+        that.setData({
+          rData: res.data.data.recommend
+        });
+
+        var prevType = that.data.exClsList[0]
+        var prevSubType = rcm[0].rName
+        var specificCls = new Array(10)
+        var subType = new Array
+        var subTypeBrand = new Array
+        var brand = new Array
+
+        for(var i=0; i < rcm.length; i++) {
+          if(rcm[i].rType == prevType) {
+            if (rcm[i].rName == prevSubType) {
+              brand.push(rcm[i].rBrand)
+            } else {
+              subType.push(prevSubType)
+              subTypeBrand.push(brand)
+              prevSubType = rcm[i].rName
+              brand = []
+              i--
+            }
+          } else {
+            subType.push(prevSubType)
+            subTypeBrand.push(brand)
+            specificCls[rcm[i - 1].rId.toString().charAt(0) - 1] = {
+              type: prevType,
+              subType: subType,
+              subTypeBrand: subTypeBrand
+            }
+
+            prevType = rcm[i].rType
+            prevSubType = rcm[i].rName
+            subTypeBrand = []
+            subType = []
+            brand = []
+            i--
+          }
+        }
+        subType.push(prevSubType)
+        subTypeBrand.push(brand)
+        specificCls[rcm[i - 1].rId.toString().charAt(0) - 1] = {
+          type: prevType,
+          subType: subType,
+          subTypeBrand: subTypeBrand
+        }
+
+        that.setData({
+          specificCls: specificCls
+        })
+        console.log(specificCls)
+      }
     });
 
   },

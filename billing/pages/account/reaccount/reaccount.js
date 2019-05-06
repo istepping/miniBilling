@@ -1,3 +1,4 @@
+var app = getApp();
 var server = require("../../../utils/server.js");
 var util = require('../../../utils/util.js');
 
@@ -524,8 +525,8 @@ Page({
           duration: 1000,
           mask: true
         })
-        wx.navigateBack({
-          
+        wx.navigateTo({
+          url: '/pages/bill/bill',
         })
       } else {
         wx.showToast({
@@ -751,7 +752,27 @@ Page({
         inprice: billData.money,
       })
     }
+
+    var map = new amap.AMapWX({
+      key: '48515d6f6a02886ee0671962efb17d7c'
+    })
+    var markersData = new Array();
+    map.getPoiAround({
+      success: function (data) {
+        markersData = data.markers;
+        that.setData({
+          markers: markersData,
+          latitude: markersData[0].latitude,
+          longitude: markersData[0].longitude,
+          address: markersData[0].address,
+        });
+      },
+      fail: function (info) {
+        wx.showModal({ title: info.errMsg })
+      }
+    })
     
+  
   },
 
   /**

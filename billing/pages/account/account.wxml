@@ -63,8 +63,9 @@
 
         <view class='item-rate' style="display:{{exRate ? 'flex' : 'none'}}">
           <text style='font-size:30rpx; margin-right: 10rpx;'>评分</text>
-          <input style="display:flex; flex:1; font-size:30rpx;" placeholder='评分...'
-            value='{{exrate}}' bindinput='getRate'></input>
+          <picker style='flex:1' mode="selector" value="{{rateIndex}}" range='{{rating}}' bindchange="changeRate">
+            <text style='font-size:30rpx;'>{{rating[rateIndex]}}</text>
+          </picker>
           <image src='/images/account/others/close.png' style="width:30rpx;height:30rpx;" bindtap='switchRate'></image>
         </view>
         <view class='line' style="display:{{exRate ? 'flex' : 'none'}}"></view>

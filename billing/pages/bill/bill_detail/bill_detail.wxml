@@ -1,4 +1,8 @@
 <!--pages/bill/bill_detail/bill_detail.wxml-->
+<view class='backView'>
+<image class='backImage' src='http://pic.yupoo.com/youheng/bbab91b2/169f530c.jpg'
+style='opacity:{{0.5}}'></image>
+
 <view class='money'>
 <text class='moneyDetailout' wx:if="{{money1<0}}" >{{money1}}</text>
 <text class='moneyDetailin' wx:if="{{money1>0}}" >{{money1}}</text>
@@ -42,7 +46,7 @@
 <view class='LabelList'>
 <view class='Label'>{{month}}月{{day}}日</view>
 <view class='Label'>{{gType}}</view>
-<view class='Label'>{{gDetail}}</view>
+<view class='Label' wx:if="{{gDetail!=0}}">{{gDetail}}</view>
 
 </view>
 <!-- 修改删除 -->
@@ -53,4 +57,5 @@
 <button class='delete' catchtap='delBill' hover-class='btn_hover2'>
 <view class='btn_text'>删除</view>
 </button>
+</view>
 </view>

@@ -96,7 +96,7 @@ style="height:900rpx" >
 
 <!--周数重复开始-->
 <view>
-<block>
+
 <view class='list' wx:for="{{everymonth}}"  wx:key="key" wx:for-item="item" catchtap="getdailybill1" data-monthnumber="{{item.month}}" >
 
 
@@ -166,7 +166,7 @@ style="height:900rpx" >
 
 
 
-</block>
+
 </view>
 
 

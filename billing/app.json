@@ -14,6 +14,7 @@
     "pages/mine/myset/myset",
     "pages/mine/personal/personal",
     "pages/recommend/recommend",
+    "pages/recommend/search/search",
     "pages/statistics/statistics",
     "pages/statistics/personal/personal",
     "pages/statistics/analysis/analysis",

@@ -1,0 +1,34 @@
+<!--pages/recommend/search/search.wxml-->
+<!-- 搜索栏 -->
+<view class="input">
+  <view class="input-box">
+    <!--布局加上类别表示><-->
+    <view class=" {{input?'search':'hide'}}">
+      <image src='/images/recommend_img/search-sm-grey.png' style='width:55%;height:33%;margin-top:30%;' ></image>
+    </view> 
+    <view class="ip-style">
+      <input class="ipt-style" placeholder="请输入商品类型" value="{{sugData}}" auto-focus type="text" bindinput="bindKeyInput"></input>
+    </view>
+  </view>
+  <view class='back' bindtap='toRecommend'>取消</view>
+</view>
+<view class="list">
+  <view class='unSearch' wx:if="{{searchSuccess == 0}}" >
+    <text>{{unsearch}}</text>
+  </view>
+  <view class='list_item' wx:for="{{searchlist}}" wx:key='{{item.id}}'>
+    <view class='item_img'>
+      <image src='https://www.billingf.xyz/billing/images/{{item.rId}}.jpg' style='height:100%;width:100%;background-color:white;'></image>
+    </view>
+    <view class="item_detail ">
+      <text class='item_title'>{{item.rBrand}}</text>
+      <text class='item_place'>类型：{{item.rName}}</text>
+      <text class='item_price'>平均价格：¥{{item.rPrice}}</text>
+      <text class='item_reason'>购买量：{{item.rBuynum}}</text>
+    </view>
+    <view class='item_buynum'>
+      <text style='font-size:small;'>好评度</text>
+      <text>{{item.rLike}}</text>
+    </view>
+  </view>
+</view>

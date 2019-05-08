@@ -10,7 +10,6 @@ Page({
     exprice: '',
     exname: '',
     exnote: '',
-    exbrand: '',
 
     inprice: '',
     inname: '',
@@ -25,6 +24,8 @@ Page({
     inCls: 0,
 
     rData: [],
+    rating: ['5分（很满意）', '4分（满意）', '3分（一般）', '2分（不满意）', '1分（很差）'],
+    rateIndex: 0,
     clsList: [],
     //支出分类     0       1       2      3       4      5       6       7      8       9
     exClsList: ['饮食', '服饰', '运动', '学习', '交通', '娱乐', '日用', '电子', '通讯', '其他'],
@@ -341,6 +342,11 @@ Page({
     }
   },
 
+  changeRate: function (e) {
+    this.setData({
+      rateIndex: e.detail.value
+    })
+  },
   //日期选择
   changeDate: function (e) {
     this.setData({
@@ -457,7 +463,7 @@ Page({
   //保存当前记账
   submit: function(event) {
     if(this.data.curTab == 0) {
-      if(this.data.exprice != '' && this.data.exname != '' && this.data.subTypeBrand != '') {
+      if(this.data.exprice != '' && this.data.exname != '') {
       //定义准备提交的数据
         var data = {
           bType: '支出',
@@ -473,6 +479,10 @@ Page({
         else {
           data.gType2 = this.data.subType
           data.gType4 = this.data.subTypeBrand
+        }
+
+        if(this.data.exRate == true) {
+          data.g_type4Id = 5 - this.data.rateIndex
         }
 
       } else {
@@ -515,14 +525,21 @@ Page({
       if(res.data.statusCode) {
         wx.showToast({
           title: '保存成功',
-          icon: 'success',
+          icon: 'none',
           duration: 1000,
           mask: true
         })
         that.setData({
+          exName: false,
+          exDate: false,
+          exNote: false,
+          exRate: false,
+          inDate: false,
+          inNote: false,
           exprice: '',
           exname: '',
           exnote: '',
+          rateIndex: 0,
           flag: false,
           subTypeAndBrand: [[],[]],
           index: [0, 0],

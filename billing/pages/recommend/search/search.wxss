@@ -1,11 +1,11 @@
-/* pages/recommend/recommend.wxss */
+/* pages/recommend/search/search.wxss */
 
 .input {
   width: 100%;
   height: 80rpx;
-  position: fixed;
   background-color: #fdd853;
   display: flex;
+  position:fixed;
   z-index: 1;
 }
 
@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 90%;
+  width: 80%;
   height: 60rpx;
   background-color: white;
   margin-left: 5%;
@@ -22,58 +22,64 @@
 }
 
 .ip-style {
-  width: fit-content;
-  height: 60%;
-  color: gainsboro;
-  text-align: center;
+  width: 90%;
+  height: 100%;
+  text-align: left;
   font-size: small;
+  background-color: white;
 }
 
+.ipt-style {
+  height: fit-content;
+  margin-top: 6rpx;
+  color: gainsboro;
+}
+.back{
+  width:10%;
+  height:60rpx; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left:88%;
+   font-size:medium;
+}
+.hide{
+  height:0;
+  width:0;
+}
 .search {
   height: 100%;
   width: 5%;
-  margin-left: 35%;
+  color: gainsboro;
+  margin-left: 2%;
 }
 
-.scroll_box {
-  position: fixed;
-  top: 80rpx;
-  width: 100%;
-  height: 80rpx;
-  background-color: whitesmoke;
-  white-space: nowrap;
-  z-index: 1;
+.search_but {
+  vertical-align: middle;
+  margin-left: 10rpx;
+  width: 25rpx;
+  height: 25rpx;
 }
 
-.tab {
-  width: auto;
-  height: 100%;
-  background-color: white;
-  border-bottom: 2rpx solid #fdd853;
+.place_info{
   display: flex;
   flex-direction: column;
 }
-
-.tab-item {
-  padding-top:2.5%;
-  height: 58rpx;
-  width: 110rpx;
+.unSearch{
+  height:1400rpx; 
+  width:100%;
+  display: flex;
+  font-size: large; 
+  color:grey; 
+  background-color: white;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  font-size: 30rpx;
-  display: inline-block;
 }
 
-.on {
-  font-weight: bolder;
-  border-bottom: 5rpx solid #fdd853;
-}
-
-.lists {
+.list {
   width: 100%;
   position: relative;
-  top: 168rpx;
+  top: 80rpx;
   z-index: 0;
   display: flex;
   flex-direction: column;
@@ -122,7 +128,6 @@
   border-radius: 100%;
   font-size: large;
 }
-
 .item_title {
   font-size: 30rpx;
   text-align: left;
@@ -154,3 +159,4 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+

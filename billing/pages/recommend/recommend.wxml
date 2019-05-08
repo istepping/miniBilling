@@ -1,45 +1,59 @@
 <!--pages/recommend/recommend.wxml-->
 <!-- 搜索栏 -->
 <view class="input">
- <view class="input-1">
-    <image class='icon1-style' src='/images/icons/icon2.png'></image>
-    <input class='ip-style' placeholder='根据您的喜好与消费类型推荐好物' bindinput='searchChange' confirm-type='search' bindconfirm='search' value='{{searchContent}}'></input>
+  <view class="input-box" bindtap='toSearch'>
+    <!--布局加上类别表示><-->
+    <view class='search'>
+      <image src='/images/recommend_img/search-sm.png' style='width:55%;height:33%;margin-top:30%；margin-left:20%;'></image>
     </view>
+    <view class='ip-style'>搜索商品类型</view>
+  </view>
 </view>
+
 <!-- 顶部tab栏 -->
-<scroll-view class="tab" scroll-x="{{true}}">
-  <block wx:for='{{tabName}}' wx:key=''>
-    <view class="tab-item {{curTab == index ? 'on' : ''}}" id='{{index}}' bindtap='changeTab'>{{item}}</view> 
-  </block>
-</scroll-view>
-
-
-<!-- 列表界面 -->
-<scroll-view class='lists' scroll-y>
-<block wx:if='{{curTab!=0}}'>
-  <view class="list_item" wx:for="{{recolist}}" wx:for-item="item" wx:if="{{item.rType==tabName[curTab]}}" wx:key=''>
-  <view class="item_img">
-    <image  style='height:100%;width:100%;background-color:white;'src='https://www.billingf.xyz/billing/images/{{item.rId}}.jpg'></image></view>
-  <view class="item_detail">
-      <text class='item_title'>{{item.rName}}</text>
-      <text class='item_reason'>品牌：{{item.rBrand}}</text>
-      <text class='item_price'>价格：￥{{item.rPrice}}左右</text>
-      <text class='item_place'>好评度：{{item.rLike}}</text>
-      <text class='item_place'>购买量：{{item.rBuynum}}</text>
+<view class='scroll_box'>
+  <scroll-view class="tab" scroll-x>
+    <view class="tab-item {{curTab == 7 ? 'on' : ''}}" data-cur='7' bindtap='changeTab'>推荐</view>
+    <view class="tab-item {{curTab == 0 ? 'on' : ''}}" data-cur='0' bindtap='changeTab'>饮食</view>
+    <view class="tab-item {{curTab == 1 ? 'on' : ''}}" data-cur='1' bindtap='changeTab'>学习</view>
+    <view class="tab-item {{curTab == 2 ? 'on' : ''}}" data-cur='2' bindtap='changeTab'>运动</view>
+    <view class="tab-item {{curTab == 3 ? 'on' : ''}}" data-cur='3' bindtap='changeTab'>服饰</view>
+    <view class="tab-item {{curTab == 4 ? 'on' : ''}}" data-cur='4' bindtap='changeTab'>电子</view>
+    <view class="tab-item {{curTab == 5 ? 'on' : ''}}" data-cur='5' bindtap='changeTab'>娱乐</view>
+    <view class="tab-item {{curTab == 6 ? 'on' : ''}}" data-cur='6' bindtap='changeTab'>交通</view>
+  </scroll-view>
+</view>
+<view class='lists' wx:for="{{personallist}}" wx:key='' wx:if='{{curTab == 7}}'>
+  <view class="list_item ">
+    <view class="item_img">
+      <image style='height:100%;width:100%;background-color:white;' src='https://www.billingf.xyz/billing/images/{{item.rId}}.jpg'></image>
+    </view>
+    <view class="item_detail ">
+      <text class='item_title'>{{item.rBrand}}</text>
+      <text class='item_price'>好评度：{{item.rLike}}</text>
+      <text class='item_reason'>购买量：{{item.rBuynum}}</text>
+      <text class='item_place'>类型：{{item.rName}}</text>
+    </view>
+    <view class='item_buynum'>
+      <text style='font-size:small;'>平均价格</text>
+      <text>¥{{item.rPrice}}</text>
+    </view>
   </view>
+</view>
+<view class='lists' wx:for="{{recolist}}" wx:key='' wx:if="{{curTab != 7 && item.rType==curType}}">
+  <view class="list_item ">
+    <view class="item_img">
+      <image style='height:100%;width:100%;background-color:white;' src='https://www.billingf.xyz/billing/images/{{item.rId}}.jpg'></image>
+    </view>
+    <view class="item_detail ">
+      <text class='item_title'>{{item.rBrand}}</text>
+      <text class='item_place'>类型：{{item.rName}}</text>
+      <text class='item_price'>平均价格：¥{{item.rPrice}}</text>
+      <text class='item_reason'>购买量：{{item.rBuynum}}</text>
+    </view>
+    <view class='item_buynum'>
+      <text style='font-size:small;'>好评度</text>
+      <text>{{item.rLike}}</text>
+    </view>
   </view>
-</block>
-<block wx:else>
-  <view class="list_item" wx:for='{{recommend}}' wx:key=''>
-  <view class="item_img">
-    <image  style='height:100%;width:100%;background-color:white;'src='https://www.billingf.xyz/billing/images/{{item.rId}}.jpg'></image></view>
-  <view class="item_detail">
-      <text class='item_title'>{{item.rName}}</text>
-      <text class='item_reason'>品牌：{{item.rBrand}}</text>
-      <text class='item_price'>价格：￥{{item.rPrice}}左右</text>
-      <text class='item_place'>好评度：{{item.rLike}}</text>
-      <text class='item_place'>购买量：{{item.rBuynum}}</text>
-  </view>
-  </view>
-</block>
-</scroll-view>
+</view>

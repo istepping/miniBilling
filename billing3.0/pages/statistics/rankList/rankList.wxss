@@ -1,0 +1,70 @@
+.top{
+  width: 100%;
+  height: 550rpx;
+}
+.cover{
+  width: 100%;
+  height:550rpx;
+}
+.picker_date{
+  position: absolute;
+  top:  30rpx;
+  margin-left: 280rpx;
+  color: white;
+}
+.setCover{
+  position: absolute;
+  top: 80rpx;
+  color: white;
+  margin-left: -160rpx;
+  left: 50%;
+}
+.person{
+  width: 100%;
+  height: 140rpx;
+  border-bottom: 20rpx solid #e8e8e8;
+  display: flex;
+  flex-direction: row;
+}
+.rank{
+  margin-top: 40rpx;
+  margin-left: 30rpx;
+}
+.nickName{
+  margin-top: 45rpx;
+  margin-left: 20rpx;
+  width: 200rpx;
+}
+.avatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-top: 35rpx;
+  margin-left: 50rpx;
+}
+.score{
+  margin-top: 35rpx;
+  margin-left: 200rpx;
+  color: green;
+  font-weight: 500;
+  font-size: 60rpx;
+  float: right;
+}
+.score.red{
+  margin-top: 35rpx;
+  margin-left: 200rpx;
+  color: red;
+  font-weight: 500;
+  font-size: 60rpx;
+  float: right;
+}
+.list{
+  width: 100%;
+}
+.item{
+  width: 100%;
+  height: 140rpx;
+  border-bottom: 2rpx solid #e8e8e8;
+  display: flex;
+  flex-direction: row;
+}

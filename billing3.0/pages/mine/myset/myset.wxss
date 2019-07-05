@@ -1,0 +1,42 @@
+.container {
+  padding: 25rpx;
+}
+.section {
+  display: flex;
+  padding: 20rpx 0;
+  width: 100%;
+  border-bottom: 1rpx solid #F5F5F5;
+  color: #9B9B9B;
+  font-size: 30rpx;
+  align-items: center;
+  
+}
+
+.section text {
+  flex: 1;
+}
+
+.section input {
+  width: 400rpx;
+  text-align: right;
+}
+
+.section image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+button {
+  margin-top: 450rpx;
+}
+.submit {
+  display: flex;
+  background: #FDD853;
+  text-align: center;
+  justify-content: center;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  border-radius: 10rpx; 
+  width: 670rpx;
+  margin-top: 40rpx;
+}

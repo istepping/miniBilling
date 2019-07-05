@@ -1,0 +1,29 @@
+<!--pages/statistics/analysis/analysis.wxml-->
+
+<view class="chart" >
+  <canvas canvas-id="radarCanvas" class="radar-chart " disable-scroll="true"></canvas>
+</view>
+
+<view class='title'>
+  <view class='title_item' style='text-align:left; margin-left:10rpx;'>消费行为属性</view>
+  <view class='title_item' style='text-align:right; margin-right:50rpx;'></view>
+</view>
+
+<view class='lists' wx:for="{{billlists}}" data-id="{{index}}" wx:key="index">
+  <view class='lists_item'>
+    <view class='item_img'>
+      <image style='height:100%;width:100%;background-color:white;' src='{{item.blimg}}'></image>
+    </view>
+    <view class='item_detail'>
+      <view  wx:if="{{billlists[index].blid == 1001}}" style='color:red;'class='item_type_detail'>
+        <text class='item_name'>{{item.blname}} : </text>
+        <text class='item_name'>{{item.blnum}}</text>
+      </view>
+      <view  wx:else class='item_type_detail'>
+        <text class='item_name'>{{item.blname}} : </text>
+        <text class='item_name'>{{item.blnum}}</text>
+      </view>
+      <text class='item_brand'>{{item.blcontent}}</text>
+    </view>
+  </view>
+</view>

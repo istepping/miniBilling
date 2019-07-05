@@ -1,0 +1,173 @@
+<view class="month" >{{month}}月</view>
+<view class='box'>
+  <view class="smallbox1">
+      <view class='title1'>{{year}}年</view>
+      <view class='title'>
+      <view class='title3'>{{month}}</view>
+      <view class='title3'>月</view>
+       <view class='title2'>{{date1}}</view>
+      <view class='title3'>日</view>
+      <view class='title_image'>
+          <image src='../../../images/billicon/icon2.png'  ></image>
+      </view>
+      </view>
+  </view>
+    <view class='smallbox2'>
+        <view class='title1'>收入</view>
+        <view class='title4'>+{{totalimTomonth}}</view>
+  </view>
+    <view class='smallbox2'>
+        <view class='title1'>支出</view>
+        <view class='title4'>-{{totalexTomonth}}</view>
+    </view>
+    <view class='smallbox2'>
+        <view class='title1'>结余</view>
+        <view class='title4'>{{totalimTomonth-totalexTomonth}}</view>
+  </view>
+  </view>
+
+<!--下方内容开始-->
+<scroll-view  scroll-y='true' class="scroll-city-parent"
+style="height:900rpx" >
+<view class="month_week" catchtap="getdailybill">
+<!--左边开始-->
+<view class="month_week_left">
+<view class='month_week_left_top'>第{{weekNum}}周</view>
+<view class='month_week_left_bottom'>{{Toweekfirst}}-{{Toweeklast}}</view>
+</view>
+<!--左边结束-->
+<!--中部开始-->
+<view class="month_week_center">
+<view class='month_week_center_top'>收入+{{everyweek[weekcount-weekNum][0]}}</view>
+<view class='month_week_center_bottom'>支出-{{everyweek[weekcount-weekNum][1]}}</view>
+</view>
+<!--中部结束-->
+<!--右边开始-->
+<view class="month_week_right">
+<view class='month_week_right_top'>结余</view>
+<view class='month_week_right_bottom'>{{everyweek[weekcount-weekNum][2]}}</view>
+</view>
+<!--右边结束-->
+</view>
+<!--下方内容结束-->
+
+<!--点击事件展开开始-->
+<view  style="display:{{detailShow?'block':'none'}}">
+<!-- 本周支出细节 -->
+  <block wx:if="{{everyweek[weekcount-weekNum].everyexweek.length!=0}}">
+  <view class='list' wx:for="{{everyweek[weekcount-weekNum].everyexweek}}" wx:key="key">
+
+  <view class="click_content"bindtap='todetail'data-bid="{{item.bId}}"data-btype="{{item.bType}}"
+    data-gdetail="{{item.gDetail}}"data-gtype="{{item.gType}}"data-gtype2="{{item.gType2}}"data-location="{{item.location}}"data-money="{{item.money}}"data-savetime="{{item.saveTime}}">
+<view class="click_content_top">
+<view class='month_week_left_top'>{{item.gType4}}日</view>
+<view class='month_week_left_bottom'>{{item.gType4id}}</view>
+</view>
+<view class="click_content_left" >
+   <image src='/images/account/exCls/{{item.gType}}.png' > </image>
+</view>
+<view class="click_content_center">{{item.gDetail==""?item.gType:item.gDetail}}</view>
+<view class="click_content_right_moneyout">-{{item.money}}</view>
+</view>
+    </view>
+</block>
+<!-- 本周收入细节 -->
+  <block wx:if="{{everyweek[weekcount-weekNum].everyimweek.length!=0}}">
+  <view class='list' wx:for="{{everyweek[weekcount-weekNum].everyimweek}}" wx:key="key">
+
+  <view class="click_content"bindtap='todetail'data-bid="{{item.bId}}"data-btype="{{item.bType}}"
+    data-gdetail="{{item.gDetail}}"data-gtype="{{item.gType}}"data-gtype2="{{item.gType2}}"data-location="{{item.location}}"data-money="{{item.money}}"data-savetime="{{item.saveTime}}">
+<view class="click_content_top">
+<view class='month_week_left_top'>{{item.gType4}}日</view>
+<view class='month_week_left_bottom'>{{item.gType4id}}</view>
+</view>
+<view class="click_content_left" >
+   <image src='/images/account/inCls/{{item.gType}}.png' > </image>
+</view><view class="click_content_center">{{item.gDetail==""?item.gType:item.gDetail}}</view>
+<view class="click_content_right_moneyin">+{{item.money}}</view>
+</view>
+    </view>
+</block>
+
+</view>
+<!--点击事件展开结束-->
+
+
+
+
+
+<!--周数重复开始-->
+<view>
+<block>
+<view class='list' wx:for="{{everyweek}}"  wx:key="key" wx:for-item="item" catchtap="getdailybill1" data-weeknumber="{{item.weekNumber}}" >
+
+
+<view class="month_week" wx:if="{{item.weekNumber<weekNum}}">
+
+<!--左边开始-->
+<view class="month_week_left">
+<view class='month_week_left_top'>第{{item.weekNumber}}周</view>
+<view class='month_week_left_bottom'>{{item.first}}-{{item.last}}</view>
+</view>
+<!--左边结束-->
+<!--中部开始-->
+<view class="month_week_center">
+<view class='month_week_center_top'>收入+{{item.income}}</view>
+<view class='month_week_center_bottom'>支出-{{item.output}}</view>
+</view>
+<!--中部结束-->
+<!--右边开始-->
+<view class="month_week_right">
+<view class='month_week_right_top'>结余</view>
+<view class='month_week_right_bottom'>{{item.balance}}</view>
+</view>
+<!--右边结束-->
+</view>
+<!--点击事件展开开始-->
+<view  style="display:{{detailShow1[6-item.weekNumber]?'block':'none'}}">
+<!-- 每周支出细节 -->
+  <block wx:if="{{item.everyexweek.length!=0}}">
+  <view class='list' wx:for="{{item.everyexweek}}" wx:key="key"wx:for-item="item1">
+
+  <view class="click_content"bindtap='todetail'data-bid="{{item1.bId}}"data-btype="{{item1.bType}}"
+    data-gdetail="{{item1.gDetail}}"data-gtype="{{item1.gType}}"data-gtype2="{{item1.gType2}}"data-location="{{item1.location}}"data-money="{{item1.money}}"data-savetime="{{item1.saveTime}}">
+<view class="click_content_top">
+<view class='month_week_left_top'>{{item1.gType4}}日</view>
+<view class='month_week_left_bottom'>{{item1.gType4id}}</view>
+</view>
+<view class="click_content_left" >
+   <image src='/images/account/exCls/{{item1.gType}}.png' > </image>
+</view>
+<view class="click_content_center">{{item1.gDetail==""?item1.gType:item1.gDetail}}</view>
+<view class="click_content_right_moneyout">{{item1.money}}</view>
+</view>
+    </view>
+</block>
+<!-- 每周收入细节 -->
+  <block wx:if="{{item.everyimweek.length!=0}}">
+  <view class='list' wx:for="{{item.everyimweek}}" wx:key="key"wx:for-item="item1">
+
+  <view class="click_content"bindtap='todetail'data-bid="{{item1.bId}}"data-btype="{{item1.bType}}"
+    data-gdetail="{{item1.gDetail}}"data-gtype="{{item1.gType}}"data-gtype2="{{item1.gType2}}"data-location="{{item1.location}}"data-money="{{item1.money}}"data-savetime="{{item1.saveTime}}">
+<view class="click_content_top">
+<view class='month_week_left_top'>{{item1.gType4}}日</view>
+<view class='month_week_left_bottom'>{{item1.gType4id}}</view>
+</view>
+<view class="click_content_left" >
+   <image src='/images/account/inCls/{{item1.gType}}.png' > </image>
+</view><view class="click_content_center">{{item1.gDetail==""?item1.gType:item1.gDetail}}</view>
+<view class="click_content_right_moneyin">{{item1.money}}</view>
+</view>
+    </view>
+</block>
+
+</view>
+<!--点击事件展开结束-->
+
+
+</view>
+</block>
+</view>
+
+<!--周数重复结束-->
+</scroll-view>

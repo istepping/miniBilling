@@ -1,0 +1,27 @@
+<view style='display:flex;align-items: center;justify-content: center;flex-direction:column;'>
+<image src='/images/statistics_img/-.png' style='width:500rpx;height:550rpx;margin-top:40rpx;'></image>
+<text style='margin-top:10rpx;font-size:large;font-weight:bold'>比邻坊用户统计</text>
+<view  class='line'></view>
+
+<view style='margin-left:600rpx;margin-top:10rpx;border-radius:100% ' >
+<image style='border-radius:100%;width: 40rpx;height: 40rpx;box-shadow:2rpx 2rpx 2rpx 2rpx;background:white' src='/images/statistics_img/wenhao.png' bindtap='buttonTap' type='primary' ></image>
+ <modal title="统计功能说明" no-cancel="true" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+    <view style='margin:2rpx;'>个人统计：将个人账单进行统计并显示。</view>
+    <view style='margin:2rpx;'>群体统计：所有用户数据统计并显示。</view>
+    <view style='margin:2rpx;'>行为分析：分析个儿账单分析用户性格。</view>
+    <view style='margin:2rpx;'>排行榜：将用户消费与其他用户对比。</view>
+  </modal> 
+   <!-- <modal title="标题" confirm-text="确认" showCancel="true"  hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCancel">
+这里是会话内容
+  </modal> -->
+</view>
+
+</view>
+<view style='display:flex;flex-wrap:wrap;justify-content:center;margin-top:2rpx;'>
+  <view class='item' wx:for="{{itemlist}}" wx:for-item="item" wx:key='' wx:for-index="index" > 
+    <navigator class='navagator'  url='{{item.url}}'>
+      <image src='{{item.img}}' class='itemImage'></image>
+      <text style='font-size:medium;' >{{item.txt}}</text>
+    </navigator>
+  </view>
+</view>

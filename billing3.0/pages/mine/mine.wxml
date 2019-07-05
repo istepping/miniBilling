@@ -1,0 +1,25 @@
+<view class='person'>
+<view class='personInfo'>
+  <view class="avatar">
+    <image src="{{ avatar }}"></image>
+  </view>
+  <view class="name">{{ name }}</view>
+</view>
+</view>
+<view class='setList'>
+<view class='personal' data-target='personal' bindtap='navTo2'>
+<view class='picture'><image src='/images/mineicon/yinsi.png'></image></view>
+<view class='dis'><view class='text'>隐私设置</view></view>
+<view class='picture right'><image src='/images/mineicon/jiantou.png'></image></view>
+</view>
+<view class='myset' data-target='myset' bindtap='navTo3'>
+<view class='picture'><image src='/images/mineicon/shezhi.png'></image></view>
+<view class='dis'><view class='text'>个人信息</view></view>
+<view class='picture right'><image src='/images/mineicon/jiantou.png'></image></view>
+</view>
+<view class='aboutus' data-target='aboutus' bindtap='navTo4'>
+<view class='picture'><image src='/images/mineicon/women.png'></image></view>
+<view class='dis'><view class='text'>关于我们</view></view>
+<view class='picture right'><image src='/images/mineicon/jiantou.png'></image></view>
+</view>
+</view>

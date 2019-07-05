@@ -1,0 +1,61 @@
+<!--pages/bill/bill_detail/bill_detail.wxml-->
+<view class='backView'>
+<image class='backImage' src='http://pic.yupoo.com/youheng/bbab91b2/169f530c.jpg'
+style='opacity:{{0.5}}'></image>
+
+<view class='money'>
+<text class='moneyDetailout' wx:if="{{money1<0}}" >{{money1}}</text>
+<text class='moneyDetailin' wx:if="{{money1>0}}" >{{money1}}</text>
+</view>
+<!-- 详细信息展示 -->
+<view class='list'>
+<view class='li'>
+  <view class='li_image1'>
+  <text class='li_image_text1'>{{day}}</text>
+  </view>
+  <view class='li_type'>分类</view>
+  <view class='li_gType'>{{gType}}</view>
+  <view class='li_jiantou'>
+   <image src='../../../images/mineicon/huijiantou.jpeg'></image>
+  </view>
+    <view class='li_gType2'>{{gType2=="null"?"":gType2}}</view>
+</view>
+<view class='li'>
+  <view class='li_image2'>
+  <image src='{{image[1].ima}}' ></image>
+  </view>
+  <view class='li_type'>备注</view>
+  <view class='li_gDetail'>{{gDetail}}</view>
+</view>
+<view class='li'>
+  <view class='li_image3'>
+  <text class='li_image_text3'>{{month}}</text>
+  </view>
+  <view class='li_type'>日期</view>
+  <view class='li_saveTime'>{{saveTime}}</view>
+</view>
+<view class='li'>
+  <view class='li_image4'>
+  <text class='li_image_text4'>{{year}}</text>
+  </view>
+  <view class='li_type'>地点</view>
+  <view class='li_location'>{{location}}</view>
+</view>
+</view>
+<!-- 标签 -->
+<view class='LabelList'>
+<view class='Label'>{{month}}月{{day}}日</view>
+<view class='Label'>{{gType}}</view>
+<view class='Label' wx:if="{{gDetail!=0}}">{{gDetail}}</view>
+
+</view>
+<!-- 修改删除 -->
+<view class='button'>
+<button class='rewrite'catchtap='rewrite'hover-class='btn_hover1'>
+<view class='btn_text' >编辑</view>
+</button>
+<button class='delete' catchtap='delBill' hover-class='btn_hover2'>
+<view class='btn_text'>删除</view>
+</button>
+</view>
+</view>

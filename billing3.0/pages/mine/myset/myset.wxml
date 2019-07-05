@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="section">
+    <text>头像</text>
+    <image src="{{ avatar }}" bindtap="changeAvatar" />
+  </view>
+  <view class="section">
+    <text>昵称</text>
+    <input value="{{ name }}"/>
+  </view>
+  <view class="section">
+  <text >用户id</text>
+    <view style='margin-right:10rpx;'>  
+    <text >{{userId}}</text>
+    </view>
+  </view>
+  <view class="section">
+    <text>性别</text>
+  <picker mode="selector" range='{{sex}}' value="{{sexIndex}}" range-key='selectSex' bindchange="bindSexChange">
+  {{userSex}}</picker>
+  </view>
+  <view class="section">
+    <text>所在学校</text>
+    <input value="{{school}}" placeholder='请填写' bindblur="blurSchool" bindinput='inputSchool' focus:0/>
+  </view>
+  <view class="section">
+    <text>入学年份</text>
+    <picker mode="selector" range='{{gradeRange}}' value='{{gradeIndex}}' range-key="year" bindchange='listenerPickerSelected'>
+    <text>{{userGrade}}</text></picker>
+  </view>
+  <view class="submit" bindtap='submit'>提交</view>
+</view>

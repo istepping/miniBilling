@@ -1,0 +1,156 @@
+/* pages/recommend/recommend.wxss */
+
+.input {
+  width: 100%;
+  height: 80rpx;
+  position: fixed;
+  background-color: #fdd853;
+  display: flex;
+  z-index: 1;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  height: 60rpx;
+  background-color: white;
+  margin-left: 5%;
+  position: absolute;
+  z-index: 1;
+}
+
+.ip-style {
+  width: fit-content;
+  height: 60%;
+  color: gainsboro;
+  text-align: center;
+  font-size: small;
+}
+
+.search {
+  height: 100%;
+  width: 5%;
+  margin-left: 35%;
+}
+
+.scroll_box {
+  position: fixed;
+  top: 80rpx;
+  width: 100%;
+  height: 80rpx;
+  background-color: whitesmoke;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.tab {
+  width: auto;
+  height: 100%;
+  background-color: white;
+  border-bottom: 2rpx solid #fdd853;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-item {
+  padding-top:2.5%;
+  height: 58rpx;
+  width: 110rpx;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 30rpx;
+  display: inline-block;
+}
+
+.on {
+  font-weight: bolder;
+  border-bottom: 5rpx solid #fdd853;
+}
+
+.lists {
+  width: 100%;
+  position: relative;
+  top: 168rpx;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(241, 240, 240);
+}
+
+.list_item {
+  height: 200rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  margin-top: 0rpx;
+  margin-bottom: 2rpx;
+}
+
+.item_img {
+  height: 150rpx;
+  width: 28%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-left: 5%;
+}
+
+.item_detail {
+  height: 160rpx;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-left: 5%;
+  margin-right: 15rpx;
+}
+
+.item_buynum {
+  height: 135rpx;
+  width: 135rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx solid #fdd853;
+  border-radius: 100%;
+  font-size: large;
+}
+
+.item_title {
+  font-size: 30rpx;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item_reason {
+  font-size: small;
+  text-align: left;
+  margin-top: 2rpx;
+  color: grey;
+}
+
+.item_price {
+  font-size: small;
+  text-align: left;
+  margin-top: 2rpx;
+  color: grey;
+}
+
+.item_place {
+  font-size: small;
+  text-align: left;
+  margin-top: 2rpx;
+  color: grey;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

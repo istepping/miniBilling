@@ -1,0 +1,73 @@
+<!--pages/bill/bill_day/bill_day.wxml-->
+<!-- 账单整体展示 -->
+<view class='day'>今天</view>
+<view class='box'>
+  <view class="smallbox1">
+      <view class='title1'>{{year}}年</view>
+      <view class='title'>
+      <view class='title3'>{{month}}</view>
+      <view class='title3'>月</view>
+       <view class='title2'>{{date1}}</view>
+      <view class='title3'>日</view>
+      <view class='title_image'>
+          <image src='../../../images/billicon/icon2.png'  ></image>
+      </view>
+      </view>
+  </view>
+    <view class='smallbox2'>
+        <view class='title1'>收入</view>
+        <view class='title4'>+{{totalimToday}}</view>
+  </view>
+    <view class='smallbox2'>
+        <view class='title1'>支出</view>
+        <view class='title4'>-{{totalexToday}}</view>
+    </view>
+    <view class='smallbox2'>
+        <view class='title1'>结余</view>
+        <view class='title4'>{{totalimToday-totalexToday}}</view>
+  </view>
+
+    </view>
+
+<!-- 账单细节展示 -->
+<scroll-view  scroll-y='true' class="scroll-city-parent"
+style="height:900rpx" >
+
+<!-- 支出细节 -->
+  <view class='exlist'>
+  <block wx:if="{{exToday.length!=0}}">
+    <view class='list' wx:for="{{exToday}}" wx:key="key"wx:for-item="item" >
+    <view class="li" bindtap='todetail' data-bid="{{item.bId}}" data-btype="{{item.bType}}" data-gdetail="{{item.gDetail}}" data-gtype="{{item.gType}}" data-gtype2="{{item.gType2}}" data-location="{{item.location}}" data-money="{{item.money}}" data-savetime="{{item.saveTime}}">
+      <view class='clsImg'>
+       <image src='/images/account/exCls/{{item.gType}}.png' style='width:50rpx;height:50rpx;' > </image>
+      </view>
+      <view class='type'>{{item.gDetail==""?item.gType:item.gDetail}}</view>
+      <view class='money out'>-{{item.money}}</view>     
+        </view>
+       
+    </view>
+   
+</block>
+  </view>
+  <!-- 收入细节 -->
+  <view class='imlist'>
+  <block wx:if="{{imToday.length!=0}}">
+    <view class='list' wx:for="{{imToday}}" wx:key="key" wx:for-item="item">
+    <view class='li' bindtap='todetail' data-bid="{{item.bId}}" data-btype="{{item.bType}}"
+    data-gdetail="{{item.gDetail}}" data-gtype="{{item.gType}}" data-gtype2="{{item.gType2}}" data-location="{{item.location}}" data-money="{{item.money}}" data-savetime="{{item.saveTime}}" >
+      <view class='clsImg'>
+       <image src='/images/account/inCls/{{item.gType}}.png' style='width:50rpx;height:50rpx;'> </image>
+      </view>
+      <view class='type'>{{item.gDetail==""?item.gType:item.gDetail}}</view>
+      <view class='money in'>+{{item.money}}</view>
+    </view>
+    
+    </view>
+</block>
+  </view>
+
+
+
+</scroll-view>
+
+

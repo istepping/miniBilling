@@ -7,13 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    billData: {},
-    billType: '',
-
+    info: Object,
+    bill: Array,
+    billData: Object,
+    
     exprice: '',
     exname: '',
     exnote: '',
-    exbrand: '',
 
     inprice: '',
     inname: '',
@@ -27,167 +27,46 @@ Page({
     //当前选择收入分类索引
     inCls: 0,
 
+    rData: [],
+    rating: ['5分（很满意）', '4分（满意）', '3分（一般）', '2分（不满意）', '1分（很差）'],
+    rateIndex: 0,
     clsList: [],
-    exClsList: [],
-    inClsList: [],
-    //支出分类
-    //              0       1       2      3       4      5       6       7      8       9
-    //exClsList: ['饮食', '服饰', '运动', '学习', '交通', '娱乐', '日用', '电子', '通讯', '其他'],
+    //支出分类     0       1       2      3       4      5       6       7      8       9
+    exClsList: ['饮食', '服饰', '运动', '学习', '交通', '娱乐', '日用', '电子', '通讯', '其他'],
     //收入分类
-    //inClsList: ['生活费', '兼职', '奖学金', '其他'],
+    inClsList: ['生活费', '兼职', '奖学金', '其他'],
 
-    specificCls: [
+    specificCls: Array(10),
+    subType: '',
+    subTypeBrand: '',
 
-      //详细分类 一级
-      [{
-        parent: '饮食',
-        children: ['食堂', '餐饮', '甜品', '饮品', '零食', '水果', '外卖', '其他']
-      }, {
-        parent: '服饰',
-        children: ['上衣', '下装', '鞋类', '其他']
-      }, {
-        parent: '运动',
-        children: ['运动锻炼', '相关器材', '其他']
-      }, {
-        parent: '学习',
-        children: ['书写', '收纳', '办公', '英语', 'IT技术', '阅读']
-      }, {
-        parent: '交通',
-        children: ['长途', '短途']
-      }, {
-        parent: '娱乐',
-        children: ['游戏', '电影', '唱歌', '出游', '聚会', '其他']
-      }, {
-        parent: '日用',
-        children: ['日常', '洗护', '洗涤', '其他']
-      }, {
-        parent: '电子',
-        children: ['电脑外设', '移动设备', '生活必备', '其他']
-      }, {
-        parent: '通讯',
-        children: ['上网', '邮寄', '话费', '其他']
-      }],
+    subTypeAndBrand: [[], []],
+    index: [0, 0],
+    flag: false,
 
-      //详细分类 二级
-      [{
-        parent: '上衣',
-        children: ['外套', '西装', 'T恤', '背心/马甲', '衬衫', '卫衣', '针织衫/毛衣']
-      }, {
-        parent: '下装',
-        children: ['西裤', '牛仔裤', '休闲裤', '运动裤', '半身裙/连衣裙']
-      }, {
-        parent: '鞋类',
-        children: ['运动鞋', '休闲鞋', '凉鞋', '靴子', '拖鞋', '板鞋']
-      }, {
-        parent: '其他',
-        children: ['背包', '手套', '袜子', '内衣', '帽子', '眼镜']
-      }, {
-        parent: '运动锻炼',
-        children: ['健身', '球类', '瑜伽', '骑行']
-      }, {
-        parent: '相关器材',
-        children: ['球', '球拍', '哑铃', '跳绳', '拉力器', '臂力器', '呼啦圈', '自行车']
-      }, {
-        parent: '书写',
-        children: ['笔', '橡皮', '尺子', '本子', 'A4纸']
-      }, {
-        parent: '收纳',
-        children: ['文具收纳', '文件收纳', '杂物收纳']
-      }, {
-        parent: '办公',
-        children: ['胶', '笔筒', '加字', '美工刀', '钉针系列', '其他']
-      }, {
-        parent: '英语',
-        children: ['新概念英语', '大学四六级', '考研英语', '雅思托福', '其他']
-      }, {
-        parent: 'IT技术',
-        children: ['Java', 'JavaScript', 'Python', 'C/C++', 'HTML', 'CSS', 'SQL', 'Android', 'IOS', 'Linux', '其他']
-      }, {
-        parent: '长途',
-        children: ['飞机', '铁路', '船舶']
-      }, {
-        parent: '短途',
-        children: ['轻轨', '地铁', '打车', '公交车', '共享单车']
-      }, {
-        parent: '阅读',
-        children: ['推理', '小说', '名著', '社科', '传记', '励志', '其他']
-      }, {
-        parent: '日常',
-        children: ['纸巾', '水杯', '毛巾', '化妆']
-      }, {
-        parent: '洗护',
-        children: ['沐浴露', '洗发护发', '牙刷牙膏']
-      }, {
-        parent: '洗涤',
-        children: ['洗衣液', '洗衣粉', '洗洁精', '肥皂']
-      }, {
-        parent: '电脑外设',
-        children: ['鼠标', '键盘', 'U盘', '耳机', '音响', '路由器', '显示器', '打印机', '移动硬盘']
-      }, {
-        parent: '移动设备',
-        children: ['手机', '平板', '笔记本']
-      }, {
-        parent: '生活必备',
-        children: ['排插', '充电', '台灯', '其他']
-      }]
-    ],
-
-    brand: [{
-      type: '上衣',
-      brands: ['Nike', 'Adidas', '361', '乔丹', '安踏', '李宁', '特步', '新百伦', '美特斯邦威', '其他']
-    }, {
-      type: '下装',
-      brands: ['Nike', 'Adidas', '361', '乔丹', '安踏', '李宁', '特步', '新百伦', '美特斯邦威', '其他']
-    }, {
-      type: '鞋类',
-      brands: ['Nike', 'Adidas', '361', '乔丹', '安踏', '李宁', '特步', '新百伦', '美特斯邦威', '其他']
-    }, {
-      type: '相关器材',
-      brands: ['红双喜', '斯伯丁', '其他']
-    }, {
-      type: '书写',
-      brands: ['晨光', '爱好', '得力', '三木', '真彩', '其他']
-    }, {
-      type: '收纳',
-      brands: ['晨光', '爱好', '得力', '三木', '真彩', '其他']
-    }, {
-      type: '办公',
-      brands: ['晨光', '爱好', '得力', '三木', '真彩', '其他']
-    }, {
-      type: '电子外设',
-      brands: ['罗技', '雷蛇', 'cherry', '达尔优', '其他']
-    }, {
-      type: '移动设备',
-      brands: ['华为', '小米', '苹果', 'OPPO', 'VIVO', '戴尔', '华硕', '惠普', '联想', '其他']
-    }, {
-      type: '电脑周边',
-      brands: ['金士顿', '东芝', '其他']
-    }, {
-      type: '日常',
-      brands: ['心相印', 'Vinda', '清风', 'Lock&Lock', '富光', '其他']
-    }, {
-      type: '洗涤',
-      brands: ['立白', '超能', '奥妙', '汰渍', '其他']
-    }],
-    brandArray: [],
-    brandIndex: 0,
-
-    flexColumn: [],
-    flexIndex: [],
-    specificInfo: '详细分类在这里',
-
+    exName: false,
     exDate: false,
     exNote: false,
+    exRate: false,
 
     inDate: false,
     inNote: false,
 
-    markers: [],
-    longitude: '',
-    latitude: '',
-    address: '',
-    cityInfo: {}
+  },
 
+  //改变 (支出/收入) Tab页
+  changeTab: function (event) {
+    if (this.data.curTab != event.target.dataset.cur) {
+      this.setData({
+        curTab: event.target.dataset.cur
+      })
+    }
+  },
+
+  swiperTab: function (event) {
+    this.setData({
+      curTab: event.detail.current
+    })
   },
 
   //改变支出类型
@@ -197,66 +76,29 @@ Page({
         exCls: event.target.dataset.cur
       })
 
-      var specificCls = this.data.specificCls;
-      var brand = this.data.brand;
-      var exbrand = '';
-      var exCls = this.data.exCls;
-      var exClass = this.data.exClsList[this.data.exCls].tName;
-      var fColumn = new Array;
-      var fIndex = new Array;
-      var bArray = new Array;
-      var bIndex = 0;
-      var specificInfo = '';
-      if (exCls == 9) {
-
-      } else if (exCls == 0 || exCls == 5 || exCls == 8) {
-        for (var i = 0; i < specificCls[0].length; i++) {
-          if (exClass == specificCls[0][i].parent) {
-            fColumn = specificCls[0][i].children;
-            fIndex = 0;
-            break;
-          }
-        }
-        specificInfo = '>' + fColumn[fIndex];
+      var specificCls = this.data.specificCls
+      if (typeof (specificCls[this.data.exCls]) != 'undefined') {
+        var subType = specificCls[this.data.exCls].subType,
+          subTypeBrand = specificCls[this.data.exCls].subTypeBrand[0]
+        var subTypeAndBrand = [[], []]
+        subTypeAndBrand[0] = subType
+        subTypeAndBrand[1] = subTypeBrand
+        this.setData({
+          flag: true,
+          subTypeAndBrand: subTypeAndBrand,
+          subType: subType[0],
+          subTypeBrand: subTypeBrand[0]
+        })
       } else {
-        for (var i = 0; i < specificCls[0].length; i++) {
-          if (exClass == specificCls[0][i].parent) {
-            fColumn.push(specificCls[0][i].children);
-            fIndex.push(0);
-            for (var k = 0; k < brand.length; k++) {
-              if (fColumn[0][fIndex[0]] == brand[k].type) {
-                bArray = brand[k].brands
-                bIndex = 0
-                exbrand = bArray[bIndex]
-                break;
-              }
-            }
-            break;
-          }
-        }
-        for (var j = 0; j < specificCls[1].length; j++) {
-          if (fColumn[0][0] == specificCls[1][j].parent) {
-            fColumn.push(specificCls[1][j].children);
-            fIndex.push(0);
-            break;
-          }
-        }
-        for (var i = 0; i < fIndex.length; i++) {
-          specificInfo += '>' + fColumn[i][fIndex[i]];
-        }
+        this.setData({
+          flag: false,
+          subTypeAndBrand: [[], []],
+          subType: '',
+          subTypeBrand: '',
+        })
       }
-      this.setData({
-        exbrand: exbrand,
-        flexColumn: fColumn,
-        flexIndex: fIndex,
-        brandArray: bArray,
-        brandIndex: bIndex,
-        specificInfo: specificInfo,
-      })
-
     }
   },
-
 
   //改变收入类型
   changeInCls: function (event) {
@@ -267,30 +109,15 @@ Page({
     }
   },
 
-  //更改品牌
-  changeBrand: function (event) {
-    if (this.data.brandIndex != event.detail.value) {
-      var exbrand = this.data.brandArray[event.detail.value]
-      if (exbrand == '其他') {
-        exbrand = ''
-      }
-      this.setData({
-        brandIndex: event.detail.value,
-        exbrand: exbrand,
-      })
-    }
-
-  },
-
   //打开或关闭 名称选项
   switchName: function (event) {
     var status;
-    if (this.data.billType == '支出') {
+    if (this.data.curTab == 0) {
       status = !this.data.exName;
       this.setData({
         exName: status
       })
-    } else if (this.data.billType == '收入') {
+    } else if (this.data.curTab == 1) {
       status = !this.data.inName;
       this.setData({
         inName: status
@@ -301,12 +128,12 @@ Page({
   //打开或关闭 日期选项
   switchDate: function (event) {
     var status;
-    if (this.data.billType == '支出') {
+    if (this.data.curTab == 0) {
       status = !this.data.exDate;
       this.setData({
         exDate: status
       })
-    } else if (this.data.billType == '收入') {
+    } else if (this.data.curTab == 1) {
       status = !this.data.inDate;
       this.setData({
         inDate: status
@@ -314,6 +141,11 @@ Page({
     }
   },
 
+  changeRate: function (e) {
+    this.setData({
+      rateIndex: e.detail.value
+    })
+  },
   //日期选择
   changeDate: function (e) {
     this.setData({
@@ -321,15 +153,24 @@ Page({
     })
   },
 
+  switchRate: function (event) {
+    var status;
+    if (this.data.curTab == 0) {
+      status = !this.data.exRate;
+      this.setData({
+        exRate: status
+      })
+    }
+  },
   //打开关闭 备注选项
   switchNote: function (event) {
     var status;
-    if (this.data.billType == '支出') {
+    if (this.data.curTab == 0) {
       status = !this.data.exNote;
       this.setData({
         exNote: status
       })
-    } else if (this.data.billType == '收入') {
+    } else if (this.data.curTab == 1) {
       status = !this.data.inNote;
       this.setData({
         inNote: status
@@ -339,24 +180,36 @@ Page({
 
   //获取金额
   getPrice: function (event) {
-    if (this.data.billType == '支出') {
+    if (this.data.curTab == 0) {
       this.setData({
         exprice: event.detail.value
       });
-    } else if (this.data.billType == '收入') {
+    } else if (this.data.curTab == 1) {
       this.setData({
         inprice: event.detail.value
       });
     }
   },
 
+  checkPrice: function (event) {
+    if (this.data.curTab == 0) {
+      this.setData({
+        exprice: parseFloat(this.data.exprice)
+      })
+    } else if (this.data.curTab == 1) {
+      this.setData({
+        inprice: parseFloat(this.data.inprice)
+      })
+    }
+  },
+
   //获取名称
   getName: function (event) {
-    if (this.data.billType == '支出') {
+    if (this.data.curTab == 0) {
       this.setData({
         exname: event.detail.value
       });
-    } else if (this.data.billType == '收入') {
+    } else if (this.data.curTab == 1) {
       this.setData({
         inname: event.detail.value
       });
@@ -371,111 +224,79 @@ Page({
 
   //获取备注
   getNote: function (event) {
-    if (this.data.billType == '支出') {
+    if (this.data.curTab == 0) {
       this.setData({
         exnote: event.detail.value
       })
-    } else if (this.data.billType == '收入') {
+    } else if (this.data.curTab == 1) {
       this.setData({
         innote: event.detail.value
       })
     }
   },
 
-  //灵活选择器 选择值
-  flexPickerChange: function (event) {
-    this.data.flexIndex = event.detail.value;
-    var specificInfo = '';
-
-    if (typeof (this.data.flexIndex) == 'object') {
-      for (var i = 0; i < this.data.flexIndex.length; i++) {
-        specificInfo += '>' + this.data.flexColumn[i][this.data.flexIndex[i]];
-      }
-    } else {
-      specificInfo = '>' + this.data.flexColumn[this.data.flexIndex];
-    }
-
+  //子分类与品牌 选择器数值改变
+  subtbChange: function (event) {
+    this.setData({
+      index: event.detail.value
+    })
+    var specificInfo = this.data.subTypeAndBrand[0][this.data.index[0]] + this.data.subTypeAndBrand[1][this.data.index[1]]
     this.setData({
       specificInfo: specificInfo,
+      subType: this.data.subTypeAndBrand[0][this.data.index[0]],
+      subTypeBrand: this.data.subTypeAndBrand[1][this.data.index[1]]
     })
   },
 
-  //灵活选择器 列值改变 数据调整
-  flexPickerColumnChange: function (e) {
-    var specificCls = this.data.specificCls;
-    var brand = this.data.brand;
-    var exCls = this.data.exCls;
-    var exClass = this.data.exClsList[this.data.exCls].tName;
-    var fColumn = this.data.flexColumn;
-    var fIndex = this.data.flexIndex;
-    var bArray = new Array;
-    var bIndex = 0;
-    var specificInfo = '';
-    fIndex[e.detail.column] = e.detail.value;
-
-
-    if (e.detail.column == 0) {
-      for (var i = 0; i < specificCls[1].length; i++) {
-        if (specificCls[1][i].parent == fColumn[0][e.detail.value]) {
-          fColumn[1] = specificCls[1][i].children;
-          break;
-        }
-      }
-      fIndex[1] = 0;
-    }
-    for (var i = 0; i < fIndex.length; i++) {
-      specificInfo += '>' + fColumn[i][fIndex[i]];
-    }
-
-    for (var i = 0; i < brand.length; i++) {
-      if (fColumn[0][e.detail.value] == brand[i].type) {
-        bArray = brand[i].brands
-        bIndex = 0
-        break;
-      }
+  //子分类与品牌列值改变 数据调整
+  subtbColumnChange: function (event) {
+    var index = this.data.index
+    index[event.detail.column] = event.detail.value
+    this.setData({
+      index: index
+    })
+    if (event.detail.column == 0) {
+      var subTypeAndBrand = this.data.subTypeAndBrand
+      index[1] = 0
+      subTypeAndBrand[1] = this.data.specificCls[this.data.exCls].subTypeBrand[event.detail.value]
+      console.log(subTypeAndBrand[1])
+      this.setData({
+        index: index,
+        subTypeAndBrand: subTypeAndBrand,
+      })
     }
 
     this.setData({
-      flexColumn: fColumn,
-      flexIndex: fIndex,
-      brandArray: bArray,
-      brandIndex: bIndex,
-      specificInfo: specificInfo,
+      subType: this.data.subTypeAndBrand[0][this.data.index[0]],
+      subTypeBrand: this.data.subTypeAndBrand[1][this.data.index[1]]
     })
   },
 
   //保存当前记账
   submit: function (event) {
-    var billData = this.data.billData
-
-    if (this.data.billType == '支出') {
-      if (this.data.exprice != '' && this.data.exname != '' && this.data.exbrand != '') {
-        
+    if (this.data.curTab == 0) {
+      if (this.data.exprice != '' && this.data.exname != '' && this.data.subTypeBrand != '') {
         //定义准备提交的数据
         var data = {
-            bId: billData.bId,
-            bType: '支出',
-          }
-        if (this.data.exprice != billData.money) { data.money = this.data.exprice }
-        if (this.data.exname != billData.gDetail) { data.gDetail = this.data.exname }
-        if (this.data.address != billData.location) { data.location = this.data.address }
-        if (this.data.exnote != billData.extraInfo) { data.extraInfo = this.data.exnote }
-        if (new Date(this.data.date + ' 00:00:00').getTime() != billData.saveTime) {
-          data.saveTime = this.data.date + ' 00:00:00'
-        } 
-        /*
-        if (this.data.exClsList[this.data.exCls].tName == '其他') {
-          
+          bId: this.data.billData.bId,
+          bType: '支出',
+          money: this.data.exprice,
+          saveTime: this.data.date + ' 00:00:00',
+          gType: this.data.exClsList[this.data.exCls],
+          gDetail: this.data.exname,
+          extraInfo: this.data.exnote
         }
-        else if (typeof (this.data.flexIndex) == 'object') {
-          data.gType2 = this.data.flexColumn[0][this.data.flexIndex[0]]
-          data.gType3 = this.data.flexColumn[1][this.data.flexIndex[1]]
-          data.gType4 = this.data.exbrand
-        } else {
-          data.gType2 = this.data.flexColumn[this.data.flexIndex]
-          data.gType4 = this.data.brand
+        if (this.data.exClsList[this.data.exCls] == '其他') {
+
         }
-        */
+        else {
+          data.gType2 = this.data.subType
+          data.gType4 = this.data.subTypeBrand
+        }
+
+        if (this.data.exRate == true) {
+          data.g_type4Id = 5 - this.data.rateIndex
+        }
 
       } else {
         var title;
@@ -492,19 +313,16 @@ Page({
         })
         return;
       }
-    } else if (this.data.billType == '收入') {
+    } else {
       if (this.data.inprice != '') {
         var data = {
-          bId: billData.bId,
+          bId: this.data.billData.bId,
           bType: '收入',
-        }
-        if (this.data.inprice != billData.money) { data.money = this.data.inprice }
-        if (this.data.inname != billData.gDetail) { data.gDetail = this.data.inname }
-        if (this.data.address != billData.location) { data.location = this.data.address }
-        if (this.data.innote != billData.extraInfo) { data.extraInfo = this.data.innote }
-        if (new Date(this.data.date + ' 00:00:00').getTime() != billData.saveTime) {
-          data.saveTime = this.data.date + ' 00:00:00'
-        } 
+          money: this.data.inprice,
+          saveTime: this.data.date + ' 00:00:00',
+          gType: this.data.inClsList[this.data.inCls],
+          extraInfo: this.data.innote,
+        };
       } else {
         wx.showToast({
           title: '请输入金额',
@@ -525,9 +343,11 @@ Page({
           duration: 1000,
           mask: true
         })
-        wx.navigateTo({
+        setTimeout(function () {
+        wx.switchTab({
           url: '/pages/bill/bill',
-        })
+          })
+        }, 2000) 
       } else {
         wx.showToast({
           title: '失败',
@@ -577,202 +397,150 @@ Page({
     }
 
     var that = this;
-    var billData = JSON.parse(options.data);
-    console.log('billData as follows:');
-    console.log(billData);
+    var info = JSON.parse(options.data);
     this.setData({
-      billData: billData,
-      billType: billData.bType,
+      info: info,
     })
 
-    if(this.data.billType == '支出') {
-      var saveDate = new Date(billData.saveTime)
-      var date = [saveDate.getFullYear(), saveDate.getMonth() + 1, saveDate.getDate()].join('-')
-      var exCls
-      server.request("/gtype/getType", '', function (res) {
-        if (res.data.statusCode === 1) {
-          that.setData({
-            clsList: res.data.data.gtypes
-          });
-        }
+    server.request("/gtype/getType", '', function (res) {
+      if (res.data.statusCode === 1) {
+        that.setData({
+          clsList: res.data.data.gtypes
+        });
+      }
+    });
 
-        var clsArray = that.data.clsList,
-            exArray = new Array,
-            inArray = new Array
+    server.request("/recommend/getRecommend", '', function (res) {
+      if (res.data.statusCode === 1) {
+        var rcm = res.data.data.recommend
+        that.setData({
+          rData: res.data.data.recommend
+        });
 
-        for (var i = 0; i < clsArray.length; i++) {
-          if (clsArray[i].tBelong == '支出') {
-            exArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-          } else if (clsArray[i].tBelong == '收入') {
-            inArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-          } else if (clsArray[i].tBelong == '通用') {
-            exArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-            inArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-          }
-        }
+        var prevType = that.data.exClsList[0]
+        var prevSubType = rcm[0].rName
+        var specificCls = new Array(10)
+        var subType = new Array
+        var subTypeBrand = new Array
+        var brand = new Array
 
-        for(var i = 0; i < exArray.length; i++) {
-          if (exArray[i].tName == billData.gType) {
-            exCls = i
-            break
-          }
-        }
-
-        if(billData.gType2 != null) {
-          var specificCls = that.data.specificCls;
-          var brand = that.data.brand;
-          var exbrand = billData.gType4;
-          var fColumn = new Array;
-          var fIndex = new Array;
-          var bArray = new Array;
-          var bIndex = 0;
-          var specificInfo = '';
-          if (exCls == 9) {
-
-          } else if (exCls == 0 || exCls == 5 || exCls == 8) {
-            for (var i = 0; i < specificCls[0].length; i++) {
-              if (billData.gType == specificCls[0][i].parent) {
-                fColumn = specificCls[0][i].children
-                fIndex = fColumn.indexOf(billData.gType2)
-                break;
-              }
+        for (var i = 0; i < rcm.length; i++) {
+          if (rcm[i].rType == prevType) {
+            if (rcm[i].rName == prevSubType) {
+              brand.push(rcm[i].rBrand)
+            } else {
+              subType.push(prevSubType)
+              subTypeBrand.push(brand)
+              prevSubType = rcm[i].rName
+              brand = []
+              i--
             }
-            specificInfo = '>' + fColumn[fIndex];
           } else {
-            for (var i = 0; i < specificCls[0].length; i++) {
-              if (billData.gType == specificCls[0][i].parent) {
-                fColumn.push(specificCls[0][i].children);
-                fIndex.push(fColumn[0].indexOf(billData.gType2));
+            subType.push(prevSubType)
+            subTypeBrand.push(brand)
+            specificCls[rcm[i - 1].rId.toString().charAt(0) - 1] = {
+              type: prevType,
+              subType: subType,
+              subTypeBrand: subTypeBrand
+            }
 
-                if (billData.gType4 != null) {
-                  for (var k = 0; k < brand.length; k++) {
-                    if (fColumn[0][fIndex[0]] == brand[k].type) {
-                      bArray = brand[k].brands
-                      bIndex = bArray.indexOf(billData.gType4)
-                      bIndex = bIndex == -1 ? bArray.length - 1 : bIndex
-                      break;
-                    }
+            prevType = rcm[i].rType
+            prevSubType = rcm[i].rName
+            subTypeBrand = []
+            subType = []
+            brand = []
+            i--
+          }
+        }
+        subType.push(prevSubType)
+        subTypeBrand.push(brand)
+        specificCls[rcm[i - 1].rId.toString().charAt(0) - 1] = {
+          type: prevType,
+          subType: subType,
+          subTypeBrand: subTypeBrand
+        }
+
+        that.setData({
+          specificCls: specificCls
+        })
+        console.log(specificCls)
+        server.requestWithoutLoading("/bill/getBillList", '', function (res) {
+          var bill = res.data.data.bill
+          that.setData({
+            bill: res.data.data.bill
+          });
+
+          for (var i = 0; i < bill.length; i++) {
+            if (bill[i].bId == info.bId) {
+              console.log(bill[i])
+              that.setData({
+                billData: bill[i]
+              })
+              if (bill[i].bType == '支出') {
+                var saveDate = new Date(info.saveTime)
+                var date = [saveDate.getFullYear(), saveDate.getMonth() + 1, saveDate.getDate()].join('-')
+                that.setData({
+                  date: date,
+                  curTab: 0,
+                  exprice: that.data.billData.money,
+                  exCls: that.data.exClsList.indexOf(that.data.billData.gType),
+                  exname: that.data.billData.gDetail,
+                  exRate: that.data.billData.gType4id == null ? false : true,
+                  rateIndex: that.data.billData.gType4id == null ? 0 : 5 - that.data.billData.gType4id,
+                  exDate: true,
+                  exNote: that.data.billData.extraInfo == '' ? false : true,
+                  exnote: that.data.billData.extraInfo
+                })
+
+                if (bill[i].gType2 != null && bill[i].gType4 != null) {
+                  that.setData({
+                    subType: bill[i].gType2,
+                    subTypeBrand: bill[i].gType4,
+                  })
+
+                  var specificCls = that.data.specificCls
+                  if (typeof (specificCls[that.data.exCls]) != 'undefined') {
+                    var subType = specificCls[that.data.exCls].subType,
+                      subTypeBrand = specificCls[that.data.exCls].subTypeBrand[subType.indexOf(that.data.subType)]
+                    var subTypeAndBrand = [[], []]
+                    subTypeAndBrand[0] = subType
+                    subTypeAndBrand[1] = subTypeBrand
+                    var index = [0, 0]
+                    index[0] = subType.indexOf(bill[i].gType2)
+                    index[1] = subTypeBrand.indexOf(bill[i].gType4)
+                    that.setData({
+                      flag: true,
+                      subTypeAndBrand: subTypeAndBrand,
+                      index: index,
+                    })
+                  } else {
+                    this.setData({
+                      flag: false,
+                      subTypeAndBrand: [[], []],
+                      subType: '',
+                      subTypeBrand: '',
+                    })
                   }
                 }
-                break;
+              } else if (bill[i].bType == '收入') {
+                var saveDate = new Date(info.saveTime)
+                var date = [saveDate.getFullYear(), saveDate.getMonth() + 1, saveDate.getDate()].join('-')
+                that.setData({
+                  date: date,
+                  curTab: 1,
+                  inprice: that.data.billData.money,
+                  inCls: that.data.inClsList.indexOf(that.data.billData.gType),
+                  inDate: true,
+                  inNote: that.data.billData.extraInfo == '' ? false : true,
+                })
               }
             }
-            for (var j = 0; j < specificCls[1].length; j++) {
-              if (fColumn[0][fIndex[0]] == specificCls[1][j].parent) {
-                fColumn.push(specificCls[1][j].children);
-                fIndex.push(fColumn[1].indexOf(billData.gType3));
-                break;
-              }
-            }
-            for (var i = 0; i < fIndex.length; i++) {
-              specificInfo += '>' + fColumn[i][fIndex[i]];
-            }
           }
-          that.setData({
-            exbrand: exbrand,
-            flexColumn: fColumn,
-            flexIndex: fIndex,
-            brandArray: bArray,
-            brandIndex: bIndex,
-            specificInfo: specificInfo,
-          })
-        }
-        
-
-        that.setData({
-          exCls: exCls,
-          exClsList: exArray,
-          inClsList: inArray,
-        })
-      });
-
-      if(billData.extraInfo != '') {
-        this.setData({
-          exNote: true,
-          exnote: billData.extraInfo,
-        })
-      }
-
-      this.setData({
-        exDate: true,
-        date: date,
-        exprice: billData.money,
-        exname: billData.gDetail,
-      })
-    } else if(this.data.billType == '收入') {
-      var saveDate = new Date(billData.saveTime)
-      var date = [saveDate.getFullYear(), saveDate.getMonth() + 1, saveDate.getDate()].join('-')
-      var inCls
-      server.request("/gtype/getType", '', function (res) {
-        if (res.data.statusCode === 1) {
-          that.setData({
-            clsList: res.data.data.gtypes
-          });
-        }
-
-        var clsArray = that.data.clsList,
-            exArray = new Array,
-            inArray = new Array
-
-        for (var i = 0; i < clsArray.length; i++) {
-          if (clsArray[i].tBelong == '支出') {
-            exArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-          } else if (clsArray[i].tBelong == '收入') {
-            inArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-          } else if (clsArray[i].tBelong == '通用') {
-            exArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-            inArray.push({ tId: clsArray[i].tId, tName: clsArray[i].tName, tBelong: clsArray[i].tBelong });
-          }
-        }
-
-        for (var i = 0; i < inArray.length; i++) {
-          if (inArray[i].tName == billData.gType) {
-            inCls = i
-            break
-          }
-        }
-
-        that.setData({
-          inCls: inCls,
-          exClsList: exArray,
-          inClsList: inArray,
-        })
-      });
-
-      if (billData.extraInfo != '') {
-        that.setData({
-          inNote: true,
-          innote: billData.extraInfo,
-        })
-      }
-
-      that.setData({
-        inDate: true,
-        date: date,
-        inprice: billData.money,
-      })
-    }
-
-    var map = new amap.AMapWX({
-      key: '48515d6f6a02886ee0671962efb17d7c'
-    })
-    var markersData = new Array();
-    map.getPoiAround({
-      success: function (data) {
-        markersData = data.markers;
-        that.setData({
-          markers: markersData,
-          latitude: markersData[0].latitude,
-          longitude: markersData[0].longitude,
-          address: markersData[0].address,
         });
-      },
-      fail: function (info) {
-        wx.showModal({ title: info.errMsg })
       }
-    })
+    });
+
     
-  
   },
 
   /**

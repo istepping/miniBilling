@@ -1,3 +1,4 @@
+<wxs module="getIcon" src='../getIcon.wxs'></wxs>
 <!--pages/bill/bill_day/bill_day.wxml-->
 <!-- 账单整体展示 -->
 <view class='day'>今天</view>
@@ -10,7 +11,7 @@
        <view class='title2'>{{date1}}</view>
       <view class='title3'>日</view>
       <view class='title_image'>
-          <image src='../../../images/billicon/icon2.png'  ></image>
+          <image src='../../../images/billicon/down_line.png'  ></image>
       </view>
       </view>
   </view>
@@ -37,11 +38,12 @@ style="height:900rpx" >
   <view class='exlist'>
   <block wx:if="{{exToday.length!=0}}">
     <view class='list' wx:for="{{exToday}}" wx:key="key"wx:for-item="item" >
-    <view class="li" bindtap='todetail' data-bid="{{item.bId}}" data-btype="{{item.bType}}" data-gdetail="{{item.gDetail}}" data-gtype="{{item.gType}}" data-gtype2="{{item.gType2}}" data-location="{{item.location}}" data-money="{{item.money}}" data-savetime="{{item.saveTime}}">
+    <view class="li" bindtap='todetail' data-bid="{{item.bId}}" data-btype="{{item.bType}}" data-gdetail="{{item.gDetail}}" data-gtype="{{item.gType}}" data-gtype2="{{item.gType2}}" 
+    data-gtype4="{{item.gType4}}" data-location="{{item.location}}" data-money="{{item.money}}" data-savetime="{{item.saveTime}}">
       <view class='clsImg'>
-       <image src='/images/account/exCls/{{item.gType}}.png' style='width:50rpx;height:50rpx;' > </image>
+       <image src='/images/account/exCls/exCls_{{getIcon.getOutIcon(item.gType)}}.png' style='width:50rpx;height:50rpx;' > </image>
       </view>
-      <view class='type'>{{item.gDetail==""?item.gType:item.gDetail}}</view>
+      <view class='type'>{{item.gDetail==null?item.gType:item.gDetail}}</view>
       <view class='money out'>-{{item.money}}</view>     
         </view>
        
@@ -54,11 +56,11 @@ style="height:900rpx" >
   <block wx:if="{{imToday.length!=0}}">
     <view class='list' wx:for="{{imToday}}" wx:key="key" wx:for-item="item">
     <view class='li' bindtap='todetail' data-bid="{{item.bId}}" data-btype="{{item.bType}}"
-    data-gdetail="{{item.gDetail}}" data-gtype="{{item.gType}}" data-gtype2="{{item.gType2}}" data-location="{{item.location}}" data-money="{{item.money}}" data-savetime="{{item.saveTime}}" >
+    data-gdetail="{{item.gDetail}}" data-gtype="{{item.gType}}" data-gtype2="{{item.gType2}}" data-gtype4="{{item.gType4}}"data-location="{{item.location}}" data-money="{{item.money}}" data-savetime="{{item.saveTime}}" >
       <view class='clsImg'>
-       <image src='/images/account/inCls/{{item.gType}}.png' style='width:50rpx;height:50rpx;'> </image>
+       <image src='/images/account/inCls/inCls_{{getIcon.getInIcon(item.gType)}}.png' style='width:50rpx;height:50rpx;'> </image>
       </view>
-      <view class='type'>{{item.gDetail==""?item.gType:item.gDetail}}</view>
+      <view class='type'>{{item.gDetail==null?item.gType:item.gDetail}}</view>
       <view class='money in'>+{{item.money}}</view>
     </view>
     

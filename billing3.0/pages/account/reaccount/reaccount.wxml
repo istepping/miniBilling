@@ -1,47 +1,9 @@
 <view class='account-container'>
-  <view class='swiper'>
-
-    <view style="display: {{billType == '支出' ? 'block' : 'none'}};padding-left: 20rpx;padding-right: 20rpx;">
+  <view class='swiper' style="display:{{curTab == 0 ? 'block' : 'none'}}">
+    <view style='padding-left: 20rpx;padding-right: 20rpx;'>
       <view class='item-price'>
-        <input style='font-size:120rpx; height:132rpx;' placeholder='0' type='digit' focus='true'
-          value='{{exprice}}' bindinput='getPrice'></input>
-      </view>
-
-      <view class='line'></view>
-
-      <view class='item-name-and-brand'>
-        <view class='item-name'>
-          <text style='font-size:20rpx;'>商品名称</text>
-          <input style="display:flex;flex:1;font-size:35rpx;" placeholder='请输入商品名称'
-          value='{{exname}}' bindinput='getName'></input>
-        </view>
-
-        <view class='item-brand'>
-          <text style='font-size:20rpx;'>品牌信息</text>
-          <view style='display: flex; flex-direction: row;'>
-            <picker style="display: {{brandArray.length != 0 ? 'flex' : 'none'}}" mode="selector"
-              range="{{brandArray}}" bindchange="changeBrand">
-              <text class='brand-picker'>{{brandArray[brandIndex]}}</text>
-            </picker>
-            <input style="display:{{(brandArray.length == 0 || brandArray[brandIndex] == '其他') ? 'flex' : 'none'}}; flex:1;font-size:35rpx;" placeholder='品牌信息'
-            value='{{exbrand}}' bindinput='getBrand'></input>
-          </view>
-        </view>
-      </view>
-
-      <view class='line'/>
-
-      <view class='item-cls'>
-        <text style='font-size:20rpx;'>分类</text>
-        <view class='item-specification'>
-          <text style='font-size:35rpx;'>{{exCls > -1 ? exClsList[exCls].tName : '无'}}</text>
-          <picker style="display:{{exCls != 9 ? 'flex' : 'none'}}"
-            mode="{{(exCls == 0 || exCls == 5 || exCls == 8) ? 'selector' : 'multiSelector'}}"
-            bindchange="flexPickerChange" bindcolumnchange="flexPickerColumnChange"
-            value="{{flexIndex}}" range="{{flexColumn}}" >
-            <view class="picker">{{specificInfo}}</view>
-          </picker>
-        </view>
+        <input style='font-size:100rpx; height:132rpx;' placeholder='0' type='digit' focus='true'
+          value='{{exprice}}' bindinput='getPrice' bindblur='checkPrice'></input>
       </view>
 
       <view class='line'></view>
@@ -49,47 +11,79 @@
       <view class='cls-view'>
         <view class='cls' wx:for='{{exClsList}}' wx:key=''>
           <view class="clsImg {{exCls == index ? 'chosen' : ''}}">
-            <image src='/images/account/exCls/{{item.tName}}.png' style='width:50rpx;height:50rpx;'
+            <image src='/images/account/exCls/exCls_{{index}}.png' style='width:50rpx;height:50rpx;'
               data-cur='{{index}}' catchtap='changeExCls'></image>
           </view>
-          <text style='font-size:20rpx'>{{item.tName}}</text>
+          <text style='font-size:20rpx'>{{item}}</text>
         </view>
+      </view>
+
+      <view class='line'/>
+
+      <view class='item-cls-and-brand' style="display:{{flag ? 'flex' : 'none'}};">
+        <text style='font-size:30rpx; margin-right: 10rpx;'>分类与品牌</text>
+        <view class='item-specification'>
+          <picker class='picker' mode='multiSelector'
+            bindchange="subtbChange" bindcolumnchange="subtbColumnChange"
+            value="{{index}}" range="{{subTypeAndBrand}}" >
+            <text class="label">{{subType}}</text>
+            <text class="label">{{subTypeBrand}}</text>
+          </picker>
+        </view>
+      </view>
+
+      <view class='line' style="display:{{flag ? 'flex' : 'none'}};" />
+
+      <view class='item-name'>
+        <text style='font-size:30rpx; margin-right: 10rpx;'>名称</text>
+        <input style="display:flex; flex:1; font-size:30rpx;" placeholder='请输入商品名称'
+        value='{{exname}}' bindinput='getName'></input>
       </view>
 
       <view class='line'></view>
 
-      <view class='item-date' style="display:{{exDate ? 'flex' : 'none'}}">
-        <picker style='flex:1' mode="date" value="{{date}}" bindchange="changeDate">
-          <text style='font-size:35rpx;'>{{date}}</text>
+      <view class='item-rate' style="display:{{exRate ? 'flex' : 'none'}}">
+        <text style='font-size:30rpx; margin-right: 10rpx;'>评分</text>
+        <picker style='flex:1' mode="selector" value="{{rateIndex}}" range='{{rating}}' bindchange="changeRate">
+          <text style='font-size:30rpx;'>{{rating[rateIndex]}}</text>
         </picker>
-        <image src='/images/account/others/close.png' style='width:40rpx;height:40rpx;' bindtap='switchDate'></image>
+        <image src='/images/account/others/close.png' style="width:30rpx;height:30rpx;" bindtap='switchRate'></image>
+      </view>
+      <view class='line' style="display:{{exRate ? 'flex' : 'none'}}"></view>
+
+      <view class='item-date' style="display:{{exDate ? 'flex' : 'none'}}">
+        <text style='font-size:30rpx; margin-right: 10rpx;'>日期</text>
+        <picker style='flex:1' mode="date" value="{{date}}" bindchange="changeDate">
+          <text style='font-size:30rpx;'>{{date}}</text>
+        </picker>
+        <image src='/images/account/others/close.png' style="width:30rpx;height:30rpx;" bindtap='switchDate'></image>
       </view>
       <view class='line' style="display:{{exDate ? 'flex' : 'none'}}"></view>
 
       <view class='item-note' style="display:{{exNote ? 'flex' : 'none'}}">
-        <input style="display:flex;flex:1;font-size:35rpx;" placeholder='备注...'
+        <input style="display:flex; flex:1; font-size:30rpx;" placeholder='备注...'
           value='{{exnote}}' bindinput='getNote'></input>
-        <image src='/images/account/others/close.png' style="width:40rpx;height:40rpx;" bindtap='switchNote'></image>
+        <image src='/images/account/others/close.png' style="width:30rpx;height:30rpx;" bindtap='switchNote'></image>
       </view>
       <view class='line' style="display:{{exNote ? 'flex' : 'none'}}"></view>
 
       <view class='addition'>
-        <view class='switch' style="display:{{exDate ? 'none' : 'flex'}}" catchtap='switchDate'>今天{{date}}</view>
+        <view class='switch' style="display:{{exRate ? 'none' : 'flex'}}" catchtap='switchRate'>评分</view>
+        <view class='switch' style="display:{{exDate ? 'none' : 'flex'}}" catchtap='switchDate'>日期</view>
         <view class='switch' style="display:{{exNote ? 'none' : 'flex'}}" catchtap='switchNote'>备注</view>
       </view>
     </view>
-    
-    <view style="display: {{billType == '收入' ? 'block' : 'none'}};padding-left: 20rpx;padding-right: 20rpx;">
+  </view>
+  
+
+
+
+
+  <view class='swiper' style="display:{{curTab == 1 ? 'block' : 'none'}}">
+    <view style='padding-left: 20rpx;padding-right: 20rpx;'>
       <view class='item-price'>
-        <input style='font-size:100rpx; height:132rpx;' placeholder='0' type='digit' focus='true'
-          value='{{inprice}}' bindinput='getPrice'></input>
-      </view>
-
-      <view class='line'></view>
-
-      <view class='item-cls'>
-        <text style='font-size:20rpx;'>分类</text>
-        <text style='font-size:35rpx;'>{{inCls > -1 ? inClsList[inCls].tName : '无'}}</text>
+        <input style='font-size:100rpx; height:132rpx;' placeholder='0' type='digit'
+          value='{{inprice}}' bindinput='getPrice' bindblur='checkPrice'></input>
       </view>
 
       <view class='line'></view>
@@ -97,33 +91,33 @@
       <view class='cls-view'>
         <view class='cls' wx:for='{{inClsList}}' wx:key=''>
           <view class="clsImg {{inCls == index ? 'chosen' : ''}}">
-            <image src='/images/account/inCls/{{item.tName}}.png' style='width:50rpx;height:50rpx;'
+            <image src='/images/account/inCls/inCls_{{index}}.png' style='width:50rpx;height:50rpx;'
               data-cur='{{index}}' catchtap='changeInCls'></image>
           </view>
-          <text style='font-size:20rpx'>{{item.tName}}</text>
+          <text style='font-size:20rpx'>{{item}}</text>
         </view>
-        
       </view>
 
       <view class='line' />
 
       <view class='item-date' style="display:{{inDate ? 'flex' : 'none'}}">
+        <text style='font-size:30rpx; margin-right: 10rpx;'>日期</text>
         <picker style='flex:1' mode="date" value="{{date}}" bindchange="changeDate">
-          <text style='font-size:35rpx;'>{{date}}</text>
+          <text style='font-size:30rpx;'>{{date}}</text>
         </picker>
-        <image src='/images/account/others/close.png' style="width:40rpx;height:40rpx;" bindtap='switchDate'></image>
+        <image src='/images/account/others/close.png' style="width:30rpx;height:30rpx;" bindtap='switchDate'></image>
       </view>
       <view class='line' style="display:{{inDate ? 'flex' : 'none'}}"></view>
 
       <view class='item-note' style="display:{{inNote ? 'flex' : 'none'}}">
-        <input style="display:flex; flex:1; font-size:35rpx;" placeholder='备注...'
+        <input style="display:flex; flex:1; font-size:30rpx;" placeholder='备注...'
           value='{{innote}}' bindinput='getNote'></input>
-        <image src='/images/account/others/close.png' style="width:40rpx;height:40rpx;" bindtap='switchNote'></image>
+        <image src='/images/account/others/close.png' style="width:30rpx;height:30rpx;" bindtap='switchNote'></image>
       </view>
       <view class='line' style="display:{{inNote ? 'flex' : 'none'}}"></view>
 
       <view class='addition'>
-        <view class='switch' style="display:{{inDate ? 'none' : 'flex'}}" catchtap='switchDate'>今天{{date}}</view>
+        <view class='switch' style="display:{{inDate ? 'none' : 'flex'}}" catchtap='switchDate'>日期</view>
         <view class='switch' style="display:{{inNote ? 'none' : 'flex'}}" catchtap='switchNote'>备注</view>
       </view>
     </view>

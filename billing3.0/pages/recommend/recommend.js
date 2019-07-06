@@ -20,29 +20,30 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 生命周期函数--监听页面加载
    */
-  onShow: function() {
+  onLoad: function() {
     var that = this;
+    wx.showLoading({
+      title: '正在为您推荐...',
+    })
     server.requestWithoutLoading("/recommend/getRecommendWithUId", '', function (res) {
-      console.log("personallist");
-      console.log(res);
+      wx.hideLoading();
+      console.log("获取推荐信息");
       that.setData({
         personallist: res.data.data.recommend,
       });
-    });
-    server.requestWithoutLoading("/recommend/getRecommend", '', function(res) {
-      var list = res.data.data.recommend;
-      console.log(list.length);
-      that.inorder(list, 0, list.length-1);
-      console.log("list");
-      console.log(list);
-      that.setData({
-        recolist: list,
+      //获取分类信息
+      server.requestWithoutLoading("/recommend/getRecommend", '', function (res) {
+        console.log("分类品牌")
+        var list = res.data.data.recommend;
+        //that.inorder(list, 0, list.length-1);
+        that.setData({
+          recolist: list,
+        });
+        that.counttypes();
       });
-      that.counttypes();
-    });
-    
+    });  
   },
 
   counttypes:function(){
@@ -213,11 +214,6 @@ Page({
     // 递归处理右边
     that.inorder(arr, i + 1, end);
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成

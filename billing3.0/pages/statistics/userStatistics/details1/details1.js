@@ -24,15 +24,15 @@ Page({
       [ 
       ],
       imglist:[
-        {"img": '/images/account/exCls/饮食.png'},
-        { "img": '/images/account/exCls/服饰.png' },
-        { "img": '/images/account/exCls/运动.png' },
-        { "img": '/images/account/exCls/学习.png' },
-        { "img": '/images/account/exCls/交通.png' },
-        { "img": '/images/account/exCls/娱乐.png' },
-        { "img": '/images/account/exCls/日用.png' },
-        { "img": '/images/account/exCls/电子.png' },
-        { "img": '/images/account/exCls/通讯.png' },
+        {"img": '/images/account/exCls/esCls_0.png'},
+        { "img": '/images/account/exCls/esCls_1.png' },
+        { "img": '/images/account/exCls/esCls_2.png' },
+        { "img": '/images/account/exCls/esCls_3.png' },
+        { "img": '/images/account/exCls/esCls_4.png' },
+        { "img": '/images/account/exCls/esCls_5.png' },
+        { "img": '/images/account/exCls/esCls_6.png' },
+        { "img": '/images/account/exCls/esCls_7.png' },
+        { "img": '/images/account/exCls/esCls_8.png' },
       ]
 
   },

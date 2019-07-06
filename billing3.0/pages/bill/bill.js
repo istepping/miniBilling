@@ -387,7 +387,7 @@ Page({
   toaccount: function () {
     wx.switchTab({
       url: '/pages/account/account',
-    })
+    }) 
   },
   tobill_day: function () {
     

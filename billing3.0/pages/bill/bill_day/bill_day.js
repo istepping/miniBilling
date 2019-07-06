@@ -13,12 +13,13 @@ Page({
     totalimToday:0,
     totalexToday:0,
     // 分别为今天的具体时间、年份日期、几号、周几、月份
-    time:null,
-    date:null,
-    date1:null,
-    day:null,
-    month:null,
-    year:null
+    time:'',
+    date:'',
+    date1:'',
+    day:'',
+    month:'',
+    year:'',
+    
 
   },
   /**
@@ -26,7 +27,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // 获取父页面数据
+    // 获取父页面数据 
     that.setData({
       time:options.time,
       date:options.date,
@@ -131,21 +132,23 @@ Page({
     });
   },
   // 跳到详情界面
-  todetail:function(event){
-    var data={
+  todetail: function (event) {
+    var data = {
       bType: event.currentTarget.dataset.btype,
       bId: event.currentTarget.dataset.bid,
       gDetail: event.currentTarget.dataset.gdetail,
       gType: event.currentTarget.dataset.gtype,
       gType2: event.currentTarget.dataset.gtype2,
+      gType4: event.currentTarget.dataset.gtype4,
       location: event.currentTarget.dataset.location,
       money: event.currentTarget.dataset.money,
       saveTime: event.currentTarget.dataset.savetime,
     }
     wx.navigateTo({
-      url: '/pages/bill/bill_detail/bill_detail?bType=' + data.bType + '&bId=' + data.bId+ '&gDetail=' + data.gDetail + '&gType=' + data.gType + '&gType2=' + data.gType2 + '&location=' + data.location + '&money=' + data.money + '&saveTime=' + data.gDetail + '&saveTime=' + data.saveTime,
+      url: '/pages/bill/bill_detail/bill_detail?bType=' + data.bType + '&bId=' + data.bId + '&gDetail=' + data.gDetail + '&gType=' + data.gType + '&gType2=' + data.gType2 + '&gType4=' + data.gType4 + '&location=' + data.location + '&money=' + data.money + '&saveTime=' + data.gDetail + '&saveTime=' + data.saveTime,
     })
   },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

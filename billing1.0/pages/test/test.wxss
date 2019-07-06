@@ -1,0 +1,73 @@
+/* pages/test/test.wxss */
+
+.container {
+  background-color: #fff;  
+  color: #939393; 
+}
+ 
+.head{
+  z-index: 1;
+  position: fixed;
+  top: 0rpx;
+  width:100%;
+  height:100rpx;
+  color:#fff;
+  background-color: cornflowerblue;
+  text-align: center;
+}
+ 
+.body-h{
+  position: fixed;
+  top: 100rpx;
+  white-space: nowrap; 
+}
+.body-h .item{
+  display: inline-block;
+  width: 600rpx;
+  height: 200rpx;
+  background-color: red;
+  margin: 20rpx;
+  box-sizing:border-box;
+}
+ 
+ 
+.body-v{
+  position: fixed;
+  z-index: 1;
+  top:300rpx;
+  bottom:100rpx;
+}
+ 
+.body-v .item{
+  height: 300rpx;
+  background-color: green;
+  margin: 15rpx;
+}
+ 
+.footer{
+  z-index: 1;
+  position: fixed;
+  bottom: 0rpx;
+  width:100%;
+  height:100rpx;
+  color:#fff;
+  background-color: cornflowerblue;
+  text-align: center;
+}
+.scroll_box{
+width: 100%;
+height: 307rpx;
+padding: 20rpx;
+background: #fff;
+white-space: nowrap;
+}
+.scroll-view_x{
+  height:307rpx;
+  width:auto;
+}
+.item_list{
+width: 160rpx;
+height: auto;
+margin-right: 23rpx;
+display: inline-block;
+}

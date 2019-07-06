@@ -42,15 +42,15 @@
   </view>
 
   <view class='bar'>
-    <image style='width:50rpx;height:50rpx;' src='/images/statistics_img/消费排行榜.png'></image>
+    <image style='width:50rpx;height:50rpx;' src='/images/statistics_img/icon_rank.png'></image>
     <text style='font-size:30rpx;padding-left:10rpx;'>支出排行</text>
   </view>
 
   <scroll-view style='height: 570rpx;' scroll-y='true'>
     <view class='list-item' wx:for="{{statType != 'week' ? exRankingList : exWeekRankingList}}" wx:key=''>
-      <image class='item-image' src='/images/account/exCls/{{item.type}}.png'></image>
+      <image class='item-image' src="/images/account/exCls/exCls_{{statType != 'week' ? item.typeId % 1000 : item.index}}.png"></image>
       <view class='item-others'>
-        <text style='font-size: 25rpx;margin-bottom: 10rpx;'>{{item.type}}  {{item.sumMoney}}</text>
+        <text style='font-size: 25rpx;margin-bottom: 10rpx;'>{{item.type}}  ￥{{item.sumMoney}}</text>
         <view style='border-radius: 10rpx;width:{{item.sumMoney / topSumMoney * 100}}%;background: #FDD853;height: 15rpx;'></view>
       </view>
     </view>

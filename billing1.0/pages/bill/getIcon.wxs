@@ -1,0 +1,27 @@
+var getIcon={
+  //获取图标数组下标
+  getOutIcon: function (type) {
+    var exList = ['饮食', '服饰', '运动', '学习', '交通', '娱乐', '日用', '电子', '通讯', '其他'];
+    var i = exList.length;
+    while (i--) {
+      if (exList[i] == type) {
+        return i;
+      }
+    }
+    return false;
+  },
+  getInIcon:function(type){
+    var inList = ['生活费', '兼职', '奖学金', '其他'];
+    var i = inList.length;
+    while (i--) {
+      if (inList[i] == type) {
+        return i;
+      }
+    }
+    return false;
+  }
+}
+module.exports = {
+  getOutIcon : getIcon.getOutIcon,
+  getInIcon  : getIcon.getInIcon
+}

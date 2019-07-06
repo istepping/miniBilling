@@ -51,7 +51,7 @@
    font-size: medium; 
   color: black;
   text-align: center;
-  margin-top: 50rpx;
+  margin-top: 30rpx;
 }
 .title_image{
   margin-left: 20rpx;

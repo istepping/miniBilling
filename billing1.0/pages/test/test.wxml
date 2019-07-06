@@ -1,0 +1,28 @@
+<view class="container">
+  <view class='head'>HEAD</view>
+  <view class="scroll_box"> 
+    <scroll-view class="scroll-view_x" scroll-x >
+      <view class="item_list" >
+        <view class="item_book_text">测试数据</view>
+      </view>
+      <view class="item_list" >
+        <view class="item_book_text">测试数据</view>
+      </view>
+      <view class="item_list" >
+        <view class="item_book_text">测试数据</view>
+      </view>
+      <view class="item_list" >
+        <view class="item_book_text">测试数据</view>
+      </view>
+      <view class="item_list" >
+        <view class="item_book_text">测试数据</view>
+      </view>
+      <view class="item_list" >
+        <view class="item_book_text">测试数据</view>
+      </view>
+      <view class="item_list" >
+        <view class="item_book_text">测试数据</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

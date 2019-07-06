@@ -24,19 +24,19 @@ Page({
     totalimToweek: 0,
     totalexToweek: 0,
     // 分别为今天的具体时间、年份日期、几号、年份、周几、月份、本月第一天、最后一天是周几、本月最大天数
-    time: null,
-    date: null,
-    date1: null,
-    year:null,
-    day: null,
-    month:null,
-    monthfirst:null,
-    monthlast:null,
+    time: '',
+    date: '',
+    date1: '',
+    year:'',
+    day: '',
+    month:'',
+    monthfirst:'',
+    monthlast:'',
     MaxMonth:0,
     // 当前周数、本周第一天、最后一天、当前月有几周
     weekNum:0,
-    Toweekfirst: null,
-    Toweeklast: null,
+    Toweekfirst: '',
+    Toweeklast: '',
     weekcount:0
 
   },
@@ -313,10 +313,8 @@ console.log(weekNum);
     var monthlast=that.data.monthlast;
     // 创建二维数组
     for (var i = 0; i < weekcount; i++) {
-      temp1[i] = { income: 0, output: 0, balance: null, year: that.data.year, month: that.data.month,weekNumber:i+1,first:null,last:null,everyimweek:[],everyexweek:[], };
-      for (var j = 0; j < 3; j++) {
-        temp1[i][j] = 0;
-      }
+      temp1[i] = { income: 0, output: 0, balance: '', year: that.data.year, month: that.data.month,weekNumber:i+1,first:'',last:'',everyimweek:[],everyexweek:[], };
+   
     }
      
     // 设定每周日期
@@ -328,7 +326,7 @@ console.log(weekNum);
       ffirst[i]=parseInt(ffirst[i]);
       llast[i]=parseInt(llast[i]);
     }
-    var first=null;var last=null;
+    var first='';var last='';
     if (that.data.weekNum == 1 || that.data.weekNum==weekcount)
     {
       if (that.data.weekNum == 1){
@@ -410,7 +408,6 @@ else{
         if (day >= parseInt(ffirst[1]) && day <= parseInt(llast[1]))
         { number = parseInt(temp1[j].weekNumber); }
       }
-      temp1[number - 1][0] += that.data.imTomonth[i].money;
       temp1[number - 1].income += that.data.imTomonth[i].money;
       temp1[number - 1].everyimweek.push(that.data.imTomonth[i]);
     }
@@ -426,15 +423,12 @@ else{
         if (day >= parseInt(ffirst[1]) && day <= parseInt(llast[1])) { number = parseInt(temp1[j].weekNumber); }
       }
 
-      temp1[number - 1][1] += that.data.exTomonth[i].money;
       temp1[number - 1].output += that.data.exTomonth[i].money;
       temp1[number - 1].everyexweek.push(that.data.exTomonth[i]);
 
     }
     for (var i = 0; i < weekcount; i++) {
-      temp1[i][2] = temp1[i][0] - temp1[i][1];
       temp1[i].balance = temp1[i].income - temp1[i].output;
-      temp1[i][2] = temp1[i][2] >= 0 ? "+" + temp1[i][2] : temp1[i][2];
       temp1[i].balance = temp1[i].balance >= 0 ? "+" + temp1[i].balance : temp1[i].balance;
 
     }
@@ -489,12 +483,13 @@ else{
       gDetail: event.currentTarget.dataset.gdetail,
       gType: event.currentTarget.dataset.gtype,
       gType2: event.currentTarget.dataset.gtype2,
+      gType4: event.currentTarget.dataset.gtype4,
       location: event.currentTarget.dataset.location,
       money: event.currentTarget.dataset.money,
       saveTime: event.currentTarget.dataset.savetime,
     }
     wx.navigateTo({
-      url: '/pages/bill/bill_detail/bill_detail?bType=' + data.bType + '&bId=' + data.bId + '&gDetail=' + data.gDetail + '&gType=' + data.gType + '&gType2=' + data.gType2 + '&location=' + data.location + '&money=' + data.money + '&saveTime=' + data.gDetail + '&saveTime=' + data.saveTime,
+      url: '/pages/bill/bill_detail/bill_detail?bType=' + data.bType + '&bId=' + data.bId + '&gDetail=' + data.gDetail + '&gType=' + data.gType + '&gType2=' + data.gType2 + '&gType4=' + data.gType4 + '&location=' + data.location + '&money=' + data.money + '&saveTime=' + data.gDetail + '&saveTime=' + data.saveTime,
     })
   },
 

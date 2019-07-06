@@ -74,7 +74,6 @@ Page({
   // 点击下拉显示框
  
   onLoad: function (options) {
-    
     var current = new Date();
     console.log(current);
     var dateStr=new Array(); 
@@ -126,7 +125,7 @@ Page({
           setTimeout(function () {
             //要延时执行的代码
           new Chart({
-            animation: false, //是否有动画
+            animation: true, //是否有动画
             canvasId: 'pieChart',
             type: 'pie',
             series: [{

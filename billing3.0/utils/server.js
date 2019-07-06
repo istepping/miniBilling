@@ -40,6 +40,7 @@ const getDataWithoutLoading = (url, data = '', callBack, method = 'GET', token =
       }
     },
     fail: function (error) {
+      wx.hideLoading();
       console.log(error);
     }
   })

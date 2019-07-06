@@ -1,12 +1,13 @@
+
 <view class='box'>
-<image class='background' src='http://pic.yupoo.com/youheng/fb9a93cd/8a7b72cb.png'></image>
+<image class='background' src='http://pic.yupoo.com/youheng/1605c73f/f0a8db8d.png'></image>
   <view class="smallbox1">
       <view class='title1'>{{year}}年</view>
       <view class='title'>
       <view class='title2'>{{month}}</view>
       <view class='title3'>月</view>
       <view class='title_image'>
-          <image src='../../../images/billicon/icon2.png'  ></image>
+          <image src='../../../images/billicon/down_line.png'  ></image>
       </view>
       </view>
   </view>

@@ -2,7 +2,6 @@
 
 const server = require("../.../../../../utils/server.js");
 var util = require("../.../../../../utils/util.js");
-var bmap = require('../../../utils/bmap-wx.js');
 var app = getApp();
 
 Page({
@@ -38,63 +37,6 @@ Page({
       like: ''
     }
   },
-
-  // getlocation: function(e) {
-  //   var that = this;
-  //   wx.getLocation({
-  //     type: 'wgs84', //默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标 
-  //     success: function(res) {
-
-  //       // success  
-  //       that.setData({
-  //         longitude: res.longitude,
-  //         latitude: res.latitude
-  //       })
-  //       console.log("location");
-  //       console.log(that.data.longitude);
-  //       console.log(that.data.latitude);
-  //       if (res && res.longitude && res.latitude) {
-  //         that.loadcity(that.data.longitude, that.data.latitude);
-  //       } else {
-  //         that.setData({
-  //           city: '获取失败'
-  //         })
-  //       }
-  //     },
-  //     fail: function(res) {
-  //       that.setData({
-  //         city: "获取失败"
-  //       })
-  //     },
-  //     complete: function(res) {},
-  //   });
-  // },
-  // loadcity: function(longitude, latitude) {
-  //   var that = this;
-  //   wx.request({
-  //     url: 'https://api.map.baidu.com/geocoder/v2/?ak=KsGrzaMhAv1ckezcpqfYQmMqB7Y20eat&location=' + latitude + ',' + longitude + '&output=json',
-  //     data: {},
-  //     header: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     success: function(res) {
-  //       if (res && res.data) {
-  //         var city = res.data.result.addressComponent.city;
-  //         console.log('city');
-  //         console.log(res);
-  //         that.setData({
-  //           city: city.indexOf('市') > -1 ? city.substr(0, city.indexOf('市')) : city
-  //         });
-  //       } else {
-  //         that.setData({
-  //           city: "获取失败"
-  //         })
-  //       }
-  //       console.log(that.data.city);
-  //     }
-  //   })
-  // },
-
   // 绑定input输入
   bindKeyInput: function(e) {
     var item_id = 500;
@@ -131,114 +73,6 @@ Page({
             unsearch: '没有相关商品'
           })
       }
-
-      // // 新建百度地图对象
-      // var BMap = new bmap.BMapWX({
-      //   ak: 'KsGrzaMhAv1ckezcpqfYQmMqB7Y20eat'
-      // });
-      // //-----------------------------------------------------------
-      // var fail = function(data) {
-      //   console.log(data)
-      // };
-      // var success = function(data) {
-      //   var sugData = [];
-      //   var result_num = data.result.length;
-      //   console.log("0 " + that.data.result_num);
-      //   for (var i = 0; i < 3; i++) {
-      //     sugData.push(data.result[i].name);
-      //   }
-      //   // sugData = data.result[0].name;
-      //   that.setData({
-      //     result: sugData,
-      //     result_num: result_num
-      //   });
-      // }
-      // // 发起suggestion检索请求
-      // BMap.suggestion({
-      //   query: input_result.rBrand,
-      //   region: that.data.city,
-      //   city_limit: true,
-      //   fail: fail,
-      //   success: success
-      // });
-      // console.log("1 " + that.data.result_num);
-      // console.log("result");
-      // console.log(that.data.result);
-      // //-------------------------------------------------------------
-      // var sear_fail = function(data) {
-      //   console.log("fail" + data);
-      // };
-      // var sear_success = function(data) {
-      //   //所有实体店地址
-      //   console.log("success");
-      //   console.log("wxMarkerData");
-      //   wxMarkerData = data.wxMarkerData;
-      //   console.log(wxMarkerData);
-      //   that.setData({
-      //     markers: wxMarkerData,
-      //   });
-      //   if(that.data.markers.length !=0){
-      //     //清空之前搜索记录
-      //     var testarr = [];
-      //     that.setData({
-      //       searchlist: []
-      //     })
-
-      //     for (var length = wxMarkerData.length, count = 0, id = item_id; count < length; count++ , id++) {
-      //       //迁移上一个循环结果
-      //       var add_searchlist = that.data.searchlist;
-      //       // //testitem，角标压栈
-      //       // var testitem = count;
-      //       // testarr.push(testitem);
-      //       // console.log('testarr');
-      //       // console.log(testarr);
-      //       //item，对象创建
-      //       var item = that.data.search_item;
-      //       console.log("id" + item_id);
-      //       item.id = item_id++;
-      //       item.img = that.imgOf(input_result.rType);
-      //       item.shoptitle = wxMarkerData[count].title;
-      //       item.address = wxMarkerData[count].address;
-      //       item.type = input_result.rType;
-      //       item.like = input_result.rLike;
-      //       console.log("item");
-      //       console.log(item);
-      //       //item，对象压栈
-      //       add_searchlist.push(item);
-      //       console.log("add_searchlist");
-      //       console.log(add_searchlist);
-      //       //list扩充
-      //       that.setData({
-      //         searchlist: add_searchlist
-      //       });
-      //       console.log("searchlist");
-      //       console.log(that.data.searchlist[count]);
-      //       console.log("searchlist");
-      //       console.log(that.data.searchlist);
-      //     }
-      //     //一次搜索得出的list
-      //     console.log("searchlist");
-      //     console.log(that.data.searchlist);
-      //   }
-      //   else {
-      //     that.setData({
-      //       searchSuccess: 0,
-      //       unsearch: '附近没有相关实体店'
-      //     })
-
-      //   }
-      // }
-      // // 发起POI检索请求
-      // console.log("count" + count + "result_num" + that.data.result_num);
-      // // for(count=0;count<that.data.result_num;count++){
-      // console.log(count + ":" + that.data.result[count]);
-      // BMap.search({
-      //   "query": that.data.result[0],
-      //   fail: sear_fail,
-      //   success: sear_success
-      // });
-      // }
-      //---------------------------------------------------------------
     };
   },
   searchtypes: function(e) {
@@ -261,23 +95,6 @@ Page({
   /**
    * 页面的初始数据
    */
-  // write: function(e) {
-  //   console.log(this.data.sugData);
-  //   this.setData({
-  //     sugData: this.data.result,
-  //     result: ''
-  //   })
-  //   console.log(this.data.sugData);
-  // },
-  // showSearchInfo: function(data, i) {
-  //   var that = this;
-  //   console.log(data);
-  //   that.setData({
-  //     shoptitle: '名称：' + data[i].title + '\n',
-  //     address: '地址：' + data[i].address + '\n',
-  //     tel: '电话：' + data[i].telephone
-  //   });
-  // },
   inorder: function (arr, start, end) {
     var that = this;
     if (start > end) {

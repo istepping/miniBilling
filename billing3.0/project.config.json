@@ -10,12 +10,13 @@
 		"minified": true,
 		"newFeature": true,
 		"nodeModules": false,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.0",
 	"appid": "wx36d7d1bb40fb635c",
-	"projectname": "billing3.0",
+	"projectname": "billing",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

@@ -15,6 +15,8 @@ Page({
     month: '',
     //统计类型 年 = year 月 = month 周 = week
     statType: 'week',
+    
+    exClsList: ['饮食', '服饰', '运动', '学习', '交通', '娱乐', '日用', '电子', '通讯', '其他'],
     //支出排行数据列表
     exRankingList: [],
     //支出排行榜最高的支出金额
@@ -84,7 +86,7 @@ Page({
           if (rawData.length > 0) {
             topSumMoney = rawData[0].sumMoney;
           }
-
+          
           that.setData({
             exRankingList: rawData,
             exTypeList: exTypeList,
@@ -485,6 +487,7 @@ Page({
     server.request("/bill/getBillList", '', function (res) {
       if(res.data.statusCode == 1) {
         var rawData = res.data.data.bill
+        console.log(rawData)
         var first = (current.getTime() - 86400000) - (current.getDay() + 6) % 7 * 86400000;
         var gTypes = new Array
         var weekBill = new Array
@@ -503,6 +506,7 @@ Page({
             gTypes.push(weekBill[i].gType)
 
             exWeekRankingList.push({
+              index: that.data.exClsList.indexOf(weekBill[i].gType),
               type: weekBill[i].gType,
               sumMoney: weekBill[i].money,
             })

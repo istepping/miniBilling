@@ -70,5 +70,6 @@
     "navigationBarBackgroundColor": "#fdd853",
     "navigationBarTitleText": "账单",
     "navigationBarTextStyle": "white"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

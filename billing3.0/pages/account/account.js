@@ -318,7 +318,7 @@ Page({
     } else {
       if (this.data.inprice != '') {
         //金额格式验证
-        if (/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/.test(this.data.exprice) == false) {
+        if (/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/.test(this.data.inprice) == false) {
           wx.showToast({
             title: '金额格式不正确!',
             icon: 'none',
